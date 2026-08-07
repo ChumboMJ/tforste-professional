@@ -1,0 +1,164 @@
+{
+  "profile": {
+    "name": "Alex Mercer",
+    "title": "Senior Software Engineer & Distributed Systems Architect",
+    "location": "San Francisco, CA (Open to Remote & Hybrid)",
+    "bio": "Passionate Software Engineer with 8+ years building high-throughput microservices, cloud native distributed systems, ASP.NET Core APIs, and interactive web applications. Specialized in resilient architecture, real-time data pipelines, and integrating production GenAI models.",
+    "availabilityStatus": "🟢 Open for Senior / Staff Software Engineering & Lead Roles",
+    "topRoles": [
+      "Senior Full Stack Software Engineer",
+      "Distributed Systems Architect",
+      "Cloud Infrastructure & DevOps Engineer",
+      "AI & Software Engineering Lead"
+    ],
+    "socialLinks": {
+      "github": "https://github.com/ChumboMJ",
+      "linkedin": "https://linkedin.com/in/alex-mercer-dev",
+      "email": "alex.mercer.dev@example.com"
+    },
+    "metrics": {
+      "yearsOfExperience": 8,
+      "productionServicesDeployed": 45,
+      "systemUptimeTrackRecord": "99.99%",
+      "openSourceContributions": 120
+    }
+  },
+  "skills": [
+    {
+      "id": "csharp-dotnet",
+      "name": "C# / .NET 10 & ASP.NET Core",
+      "category": "Backend & APIs",
+      "proficiencyPercent": 95,
+      "yearsExperience": 8,
+      "highlightedProjects": ["Distributed Event Mesh", "High-Throughput Payment API"],
+      "coreCompetency": true
+    },
+    {
+      "id": "react-vite",
+      "name": "React, Vite & TypeScript",
+      "category": "Frontend",
+      "proficiencyPercent": 90,
+      "yearsExperience": 6,
+      "highlightedProjects": ["Real-time Cloud Operations Dashboard", "Interactive Engineer Portfolio"],
+      "coreCompetency": true
+    },
+    {
+      "id": "gcp-cloud",
+      "name": "GCP (Cloud Run, Vertex AI, BigQuery, Pub/Sub)",
+      "category": "Cloud & DevOps",
+      "proficiencyPercent": 88,
+      "yearsExperience": 5,
+      "highlightedProjects": ["Serverless Microservices Platform", "GCP Gemini AI Grounding Pipeline"],
+      "coreCompetency": true
+    },
+    {
+      "id": "docker-k8s",
+      "name": "Docker, Containerization & Kubernetes",
+      "category": "Cloud & DevOps",
+      "proficiencyPercent": 85,
+      "yearsExperience": 5,
+      "highlightedProjects": ["Kubernetes Cluster Orchestration", "CI/CD Pipeline Engine"],
+      "coreCompetency": true
+    },
+    {
+      "id": "postgresql-redis",
+      "name": "PostgreSQL, EF Core & Redis",
+      "category": "Databases & Architecture",
+      "proficiencyPercent": 92,
+      "yearsExperience": 7,
+      "highlightedProjects": ["Low-Latency Cache Layer", "Financial Transaction Ledger"],
+      "coreCompetency": true
+    },
+    {
+      "id": "genai-llm",
+      "name": "Generative AI, Vertex AI & RAG",
+      "category": "AI & ML",
+      "proficiencyPercent": 85,
+      "yearsExperience": 3,
+      "highlightedProjects": ["Resume AI Persona Assistant", "Enterprise Knowledge Vector Search"],
+      "coreCompetency": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "event-mesh",
+      "title": "High-Throughput Cloud Event Mesh",
+      "subtitle": "Real-Time Event Processing Platform handling 50k+ req/sec",
+      "description": "Architected an event-driven processing pipeline using ASP.NET Core 10, GCP Pub/Sub, and Redis Streams. Reduced message latency from 140ms to under 12ms under heavy load spikes.",
+      "role": "Lead Architect & Principal Developer",
+      "techStack": ["C# .NET 10", "ASP.NET Core", "GCP Pub/Sub", "Redis", "Docker"],
+      "keyMetrics": ["50,000 req/sec peak load", "<12ms latency", "99.999% reliability"],
+      "architectureOverview": "Microservices communicate via GCP Pub/Sub with Redis caching for idempotent deduplication, running on GCP Cloud Run.",
+      "demoUrl": "https://demo.eventmesh.example.com",
+      "githubUrl": "https://github.com/ChumboMJ/event-mesh-core",
+      "category": "Cloud Infrastructure",
+      "featured": true
+    },
+    {
+      "id": "ai-knowledge-rag",
+      "title": "GCP Vertex AI Grounded Enterprise RAG",
+      "subtitle": "Knowledge Assistant leveraging .NET 10 and Gemini 2.5 Flash",
+      "description": "Engineered a Retrieval-Augmented Generation (RAG) assistant using C# Semantic Kernel and GCP Vertex AI. Enabled safe, zero-hallucination querying across enterprise technical documentation.",
+      "role": "Senior AI Systems Engineer",
+      "techStack": ["C# .NET 10", "GCP Vertex AI", "Gemini 2.5 Flash", "React", "TypeScript"],
+      "keyMetrics": ["0% hallucination rate on verified docs", "<400ms answer latency", "$0.001 per 1,000 queries"],
+      "architectureOverview": "ASP.NET Core API intercepts queries, retrieves relevant markdown context vectors, and streams answers from GCP Vertex AI.",
+      "demoUrl": "https://demo.ai-rag.example.com",
+      "githubUrl": "https://github.com/ChumboMJ/gcp-vertex-rag-dotnet",
+      "category": "AI / Machine Learning",
+      "featured": true
+    },
+    {
+      "id": "cloud-ops-dashboard",
+      "title": "Interactive Cloud Operations Telemetry UI",
+      "subtitle": "Real-Time Infrastructure Monitoring Dashboard with Glassmorphic UI",
+      "description": "Designed a sleek React frontend with WebSockets, HTML5 Canvas telemetry graphs, and dynamic metric filtering for tracking multi-region Kubernetes nodes.",
+      "role": "Senior Full-Stack Engineer",
+      "techStack": ["React 19", "Vite", "WebSockets", "CSS Modern Grid", "ASP.NET Core SignalR"],
+      "keyMetrics": ["Real-time 60fps graph updates", "Zero memory leak over 48h uptime", "4.9/5 UX Rating"],
+      "architectureOverview": "React client subscribes to ASP.NET Core SignalR hub pushing live telemetry stats.",
+      "demoUrl": "https://demo.cloudops.example.com",
+      "githubUrl": "https://github.com/ChumboMJ/cloud-ops-react-dashboard",
+      "category": "Full-Stack Apps",
+      "featured": true
+    }
+  ],
+  "experience": [
+    {
+      "id": "staff-eng-cloud",
+      "roleTitle": "Senior / Staff Software Engineer",
+      "company": "Apex Distributed Systems",
+      "period": "2022 - Present",
+      "location": "San Francisco, CA",
+      "responsibilities": [
+        "Led a team of 6 engineers building cloud native microservices on ASP.NET Core and GCP.",
+        "Architected automated CI/CD deployment workflows using GitHub Actions and GCP Cloud Run.",
+        "Integrated GCP Vertex AI Gemini models into core product workflows, cutting manual data processing time by 75%."
+      ],
+      "technologiesUsed": ["C# .NET 10", "ASP.NET Core", "GCP Cloud Run", "Vertex AI", "React", "PostgreSQL"],
+      "recruiterCategories": ["FullStack", "Backend", "DevOps", "AI"],
+      "impactHighlights": [
+        "Reduced cloud infrastructure costs by $120,000/year through container optimization.",
+        "Maintained 99.99% SLA across 45 core production microservices."
+      ]
+    },
+    {
+      "id": "senior-fullstack-eng",
+      "roleTitle": "Senior Full Stack Engineer",
+      "company": "Nexus Cloud Technologies",
+      "period": "2019 - 2022",
+      "location": "Remote",
+      "responsibilities": [
+        "Built responsive client portals with React and TypeScript backed by high-throughput REST APIs.",
+        "Implemented distributed caching with Redis, reducing database load by 60%.",
+        "Pioneered unit and integration testing standards achieving 92% code coverage across backend repositories."
+      ],
+      "technologiesUsed": ["React", "C#", "ASP.NET Core", "Redis", "Docker", "SQL Server"],
+      "recruiterCategories": ["FullStack", "Backend"],
+      "impactHighlights": [
+        "Spearheaded redesign of flagships analytics platform, serving 250k daily active users.",
+        "Mentored 4 junior and mid-level software engineers."
+      ]
+    }
+  ]
+}
