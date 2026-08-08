@@ -39,34 +39,46 @@ app.UseStaticFiles();
 // REST API Endpoints
 var api = app.MapGroup("/api");
 
-api.MapGet("/profile", (IPortfolioService service) => 
-    Results.Ok(service.GetProfile()))
-    .WithName("GetProfile");
-
-api.MapGet("/skills", (IPortfolioService service, string? category, string? perspective) => 
-    Results.Ok(service.GetSkills(category, perspective)))
-    .WithName("GetSkills");
-
-api.MapGet("/projects", (IPortfolioService service, string? category, bool? featured) => 
-    Results.Ok(service.GetProjects(category, featured)))
-    .WithName("GetProjects");
-
-api.MapGet("/experience", (IPortfolioService service, string? perspective) => 
-    Results.Ok(service.GetExperiences(perspective)))
-    .WithName("GetExperiences");
-
-api.MapPost("/terminal/command", (IPortfolioService service, TerminalRequest request) => 
-    Results.Ok(service.ExecuteTerminalCommand(request.Command)))
-    .WithName("ExecuteTerminalCommand");
-
-api.MapPost("/contact", (IPortfolioService service, ContactMessageRequest request) =>
+api.MapGet("/profile", (IPortfolioService service, ILogger<Program> logger) => 
 {
+    logger.LogDebug("Fetching user profile data...");
+    return Results.Ok(service.GetProfile());
+}).WithName("GetProfile");
+
+api.MapGet("/skills", (IPortfolioService service, ILogger<Program> logger, string? category, string? perspective) => 
+{
+    logger.LogDebug("Querying skills matrix. Category: {Category}, Perspective: {Perspective}", category, perspective);
+    return Results.Ok(service.GetSkills(category, perspective));
+}).WithName("GetSkills");
+
+api.MapGet("/projects", (IPortfolioService service, ILogger<Program> logger, string? category, bool? featured) => 
+{
+    logger.LogDebug("Querying projects showcase. Category: {Category}, Featured: {Featured}", category, featured);
+    return Results.Ok(service.GetProjects(category, featured));
+}).WithName("GetProjects");
+
+api.MapGet("/experience", (IPortfolioService service, ILogger<Program> logger, string? perspective) => 
+{
+    logger.LogDebug("Querying experiences timeline. Perspective: {Perspective}", perspective);
+    return Results.Ok(service.GetExperiences(perspective));
+}).WithName("GetExperiences");
+
+api.MapPost("/terminal/command", (IPortfolioService service, ILogger<Program> logger, TerminalRequest request) => 
+{
+    logger.LogTrace("Executing CLI Terminal Command: {Command}", request.Command);
+    return Results.Ok(service.ExecuteTerminalCommand(request.Command));
+}).WithName("ExecuteTerminalCommand");
+
+api.MapPost("/contact", (IPortfolioService service, ILogger<Program> logger, ContactMessageRequest request) =>
+{
+    logger.LogInformation("Contact submission received from: {Name} <{Email}>", request.Name, request.Email);
     var response = service.SubmitContactMessage(request);
     return response.Success ? Results.Ok(response) : Results.BadRequest(response);
 }).WithName("SubmitContactMessage");
 
-api.MapPost("/ai/ask", async (IGeminiAiService aiService, AiChatRequest request) =>
+api.MapPost("/ai/ask", async (IGeminiAiService aiService, ILogger<Program> logger, AiChatRequest request) =>
 {
+    logger.LogDebug("Dispatching AI query: {Query}", request.Message);
     var response = await aiService.AskAsync(request);
     return Results.Ok(response);
 }).WithName("AskAiAssistant");
