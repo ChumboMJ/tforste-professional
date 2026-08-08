@@ -44,9 +44,10 @@ public class GeminiAiService : IGeminiAiService
     private async Task<AiChatResponse> CallGcpGeminiApiAsync(string prompt, string apiKey)
     {
         var systemInstruction = 
-            "You are an AI career representative for Tim Forste, Senior Software Engineer with 12+ years of experience. " +
-            "Answer questions accurately based ONLY on the grounded resume knowledge context below. " +
-            "Be professional, technical, concise, and emphasize C#, .NET Core, Azure, GCP (GKE, Pub/Sub), Google Gemini CLI integrations, and event-driven architecture.\n\n" +
+            "You are Tim Forste's AI Persona, speaking directly in the FIRST PERSON ('I', 'my', 'me'). " +
+            "ALWAYS answer as Tim Forste himself (e.g., 'I have 12+ years of experience', 'My work at Entegral involved...', 'I built...'). " +
+            "NEVER refer to Tim in the third person ('he', 'him', 'Tim Forste'). " +
+            "Be professional, technical, pragmatic, and concise, emphasizing C#, .NET Core, Azure, GCP (GKE, Pub/Sub), Google Gemini CLI integrations, and event-driven architecture.\n\n" +
             $"Resume Knowledge Base Context:\n{_knowledgeContext}";
 
         var requestBody = new
@@ -85,7 +86,7 @@ public class GeminiAiService : IGeminiAiService
             .GetProperty("content")
             .GetProperty("parts")[0]
             .GetProperty("text")
-            .GetString() ?? "Tim Forste is a Senior Software Engineer specializing in C#, .NET Core, Azure, and GCP.";
+            .GetString() ?? "I am Tim Forste's AI Persona, ready to answer questions about my engineering background and technical work.";
 
         return new AiChatResponse(
             text.Trim(),
@@ -102,23 +103,23 @@ public class GeminiAiService : IGeminiAiService
 
         if (q.Contains("c#") || q.Contains(".net") || q.Contains("backend") || q.Contains("asp.net"))
         {
-            answer = "Tim Forste has 12+ years of deep experience with C#, .NET Core, and ASP.NET. He has modernized legacy batch jobs into real-time event-driven solutions using .NET Core, Azure Service Bus, and Dapper ORM, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
+            answer = "I have 12+ years of experience specializing in C#, .NET Core, and ASP.NET. I have modernized legacy batch jobs into real-time event-driven solutions using .NET Core, Azure Service Bus, and Dapper ORM, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
         }
         else if (q.Contains("gcp") || q.Contains("azure") || q.Contains("cloud") || q.Contains("gemini") || q.Contains("docker"))
         {
-            answer = "Tim has extensive hybrid-cloud experience across Azure and GCP. At Entegral, he deployed a GCP-hosted NestJS app onboarded 7,000+ shops processing 180,000 repairs, and built a NestJS service utilizing the Google Gemini CLI to ingest and parse XML event payloads.";
+            answer = "I have extensive hybrid-cloud experience across Azure and GCP. At Entegral, I deployed a GCP-hosted NestJS application onboarding 7,000+ shops processing 180,000 repairs, and built a NestJS service utilizing the Google Gemini CLI to ingest and parse XML event payloads.";
         }
         else if (q.Contains("petsafe") || q.Contains("workday") || q.Contains("qualtrics") || q.Contains("service bus"))
         {
-            answer = "At PetSafe Brands, Tim architected automated HR integrations between Workday and Qualtrics using Azure Functions and Key Vault (saving HR 15+ hrs/week) and re-architected legacy nightly Salesforce batch syncs into real-time Azure Service Bus event streams.";
+            answer = "At PetSafe Brands, I architected automated HR integrations between Workday and Qualtrics using Azure Functions and Key Vault (saving HR 15+ hours weekly) and re-architected legacy nightly Salesforce batch syncs into real-time Azure Service Bus event streams.";
         }
         else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("experience") || q.Contains("saif"))
         {
-            answer = "Tim is a pragmatic technical leader with 12+ years of experience. At Saif Corporation, he earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";
+            answer = "I am a pragmatic technical leader with 12+ years of experience. At Saif Corporation, I earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";
         }
         else
         {
-            answer = "Tim Forste is a Senior Software Engineer with 12+ years of experience specializing in C#, .NET Core, Azure, GCP, and event-driven microservices. He has a track record of high observability, legacy modernization, and AI integration with Google Gemini CLI.";
+            answer = "Hi! I am Tim Forste's AI Persona. I have 12+ years of experience specializing in C#, .NET Core, Azure, GCP, and event-driven microservices, with a strong track record of high observability, legacy modernization, and AI integrations using Google Gemini CLI.";
         }
 
         return new AiChatResponse(
