@@ -1,0 +1,29 @@
+# Dependency directories (crucial: exclude Windows node_modules)
+node_modules/
+**/node_modules/
+
+# .NET build outputs
+bin/
+**/bin/
+obj/
+**/obj/
+out/
+
+# Frontend build outputs
+dist/
+**/dist/
+build/
+**/build/
+.vite/
+
+# Git and IDE
+.git/
+.github/
+.vs/
+.vscode/
+.idea/
+
+# Temp & Env files
+*.log
+.env
+.env.local
