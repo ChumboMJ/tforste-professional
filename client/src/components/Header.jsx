@@ -46,14 +46,14 @@ export default function Header({
           fontWeight: 800,
           fontSize: '1.25rem'
         }}>
-          AM
+          TF
         </div>
         <div>
           <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>
-            Alex Mercer <span className="gradient-text">.NET 10</span>
+            Tim Forste <span className="gradient-text">.NET Core</span>
           </div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            Senior Software Engineer & Distributed Architect
+            Senior Software Engineer & Hybrid-Cloud Architect
           </div>
         </div>
       </div>

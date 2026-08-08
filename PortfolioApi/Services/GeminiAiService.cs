@@ -44,9 +44,9 @@ public class GeminiAiService : IGeminiAiService
     private async Task<AiChatResponse> CallGcpGeminiApiAsync(string prompt, string apiKey)
     {
         var systemInstruction = 
-            "You are an AI career representative for Alex Mercer, Senior Software Engineer. " +
-            "Answer questions accurately based ONLY on the following grounded resume knowledge context. " +
-            "Be professional, concise, and highlight specific engineering metrics, ASP.NET Core .NET 10, GCP cloud architecture, and React experience.\n\n" +
+            "You are an AI career representative for Tim Forste, Senior Software Engineer with 12+ years of experience. " +
+            "Answer questions accurately based ONLY on the grounded resume knowledge context below. " +
+            "Be professional, technical, concise, and emphasize C#, .NET Core, Azure, GCP (GKE, Pub/Sub), Google Gemini CLI integrations, and event-driven architecture.\n\n" +
             $"Resume Knowledge Base Context:\n{_knowledgeContext}";
 
         var requestBody = new
@@ -85,7 +85,7 @@ public class GeminiAiService : IGeminiAiService
             .GetProperty("content")
             .GetProperty("parts")[0]
             .GetProperty("text")
-            .GetString() ?? "I am ready to share details about my engineering experience and background.";
+            .GetString() ?? "Tim Forste is a Senior Software Engineer specializing in C#, .NET Core, Azure, and GCP.";
 
         return new AiChatResponse(
             text.Trim(),
@@ -102,23 +102,23 @@ public class GeminiAiService : IGeminiAiService
 
         if (q.Contains("c#") || q.Contains(".net") || q.Contains("backend") || q.Contains("asp.net"))
         {
-            answer = "Alex Mercer has 8+ years of deep expertise with C# and .NET (including .NET 10 & ASP.NET Core). He has built high-throughput microservices handling over 50,000 requests per second with sub-12ms latency, leveraging Redis caching, Entity Framework Core, and resilient messaging queues.";
+            answer = "Tim Forste has 12+ years of deep experience with C#, .NET Core, and ASP.NET. He has modernized legacy batch jobs into real-time event-driven solutions using .NET Core, Azure Service Bus, and Dapper ORM, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
         }
-        else if (q.Contains("gcp") || q.Contains("cloud") || q.Contains("vertex") || q.Contains("docker") || q.Contains("k8s"))
+        else if (q.Contains("gcp") || q.Contains("azure") || q.Contains("cloud") || q.Contains("gemini") || q.Contains("docker"))
         {
-            answer = "Alex specializes in GCP Cloud Architecture (Cloud Run, Pub/Sub, Vertex AI, BigQuery) and container orchestration with Docker and Kubernetes. He reduced cloud infrastructure costs by $120,000/year at Apex Distributed Systems while maintaining a 99.99% SLA across 45 production microservices.";
+            answer = "Tim has extensive hybrid-cloud experience across Azure and GCP. At Entegral, he deployed a GCP-hosted NestJS app onboarded 7,000+ shops processing 180,000 repairs, and built a NestJS service utilizing the Google Gemini CLI to ingest and parse XML event payloads.";
         }
-        else if (q.Contains("react") || q.Contains("frontend") || q.Contains("ui") || q.Contains("js") || q.Contains("typescript"))
+        else if (q.Contains("petsafe") || q.Contains("workday") || q.Contains("qualtrics") || q.Contains("service bus"))
         {
-            answer = "Alex has 6+ years of modern frontend experience using React, Vite, and TypeScript. He built real-time WebSockets & Canvas cloud monitoring dashboards running at 60fps and designed responsive, glassmorphism UI applications for over 250,000 daily active users.";
+            answer = "At PetSafe Brands, Tim architected automated HR integrations between Workday and Qualtrics using Azure Functions and Key Vault (saving HR 15+ hrs/week) and re-architected legacy nightly Salesforce batch syncs into real-time Azure Service Bus event streams.";
         }
-        else if (q.Contains("outage") || q.Contains("failure") || q.Contains("leadership") || q.Contains("experience"))
+        else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("experience") || q.Contains("saif"))
         {
-            answer = "As Senior/Staff Engineer at Apex Distributed Systems, Alex led a team of 6 engineers. He architected automated CI/CD pipelines, integrated GCP Vertex AI models to automate data processing by 75%, and established 99.99% SLA track records across multi-region deployments.";
+            answer = "Tim is a pragmatic technical leader with 12+ years of experience. At Saif Corporation, he earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";
         }
         else
         {
-            answer = "Alex Mercer is a Senior Software Engineer specializing in C# .NET 10, GCP Cloud Architecture, Vertex AI, and React. He has 8 years of experience building resilient microservices, leading engineering teams, and optimizing production cloud infrastructure.";
+            answer = "Tim Forste is a Senior Software Engineer with 12+ years of experience specializing in C#, .NET Core, Azure, GCP, and event-driven microservices. He has a track record of high observability, legacy modernization, and AI integration with Google Gemini CLI.";
         }
 
         return new AiChatResponse(

@@ -5,11 +5,11 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       sender: 'ai',
-      text: 'Hello! I am Alex Mercer\'s AI Career Assistant powered by GCP Gemini & .NET 10. Ask me anything about Alex\'s work experience, .NET C# APIs, GCP cloud architecture, or engineering accomplishments!',
+      text: 'Hello! I am Tim Forste\'s AI Career Assistant powered by GCP Gemini & .NET 10. Ask me anything about Tim\'s 12+ years of software engineering experience, .NET Core APIs, Azure/GCP hybrid cloud architecture, or Google Gemini CLI integrations!',
       suggestedFollowUps: [
-        'What is your experience with .NET 10 and GCP?',
-        'Describe a major production outage you resolved',
-        'How do you build zero-hallucination RAG applications?'
+        'What is your experience with .NET Core and Azure Service Bus?',
+        'Tell me about your GCP NestJS project and Gemini CLI parsing',
+        'What HR and finance integrations have you built?'
       ]
     }
   ]);
@@ -108,7 +108,7 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
             </div>
             <div>
               <div style={{ fontWeight: 700, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                Alex Mercer AI Assistant <Sparkles size={14} color="var(--accent-cyan)" />
+                Tim Forste AI Assistant <Sparkles size={14} color="var(--accent-cyan)" />
               </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                 Powered by GCP Gemini & .NET 10 (Zero-Hallucination Grounded Engine)

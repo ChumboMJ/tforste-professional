@@ -153,7 +153,7 @@ export default function ContactModal({ isOpen, onClose }) {
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Hello Alex, we would love to discuss a Staff Engineer role at our company..."
+              placeholder="Hello Tim, we would love to discuss a Senior Software Engineer / Architect role at our company..."
               style={{
                 width: '100%',
                 padding: '0.75rem',

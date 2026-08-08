@@ -81,7 +81,7 @@ export default function App() {
             Built with ASP.NET Core 10, C# 13, GCP Gemini AI Grounding & React 19.
           </p>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
-            © {new Date().getFullYear()} Alex Mercer. All rights reserved.
+            © {new Date().getFullYear()} Tim Forste. All rights reserved.
           </p>
         </div>
       </footer>

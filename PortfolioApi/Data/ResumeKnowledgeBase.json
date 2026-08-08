@@ -1,163 +1,204 @@
 {
   "profile": {
-    "name": "Alex Mercer",
-    "title": "Senior Software Engineer & Distributed Systems Architect",
-    "location": "San Francisco, CA (Open to Remote & Hybrid)",
-    "bio": "Passionate Software Engineer with 8+ years building high-throughput microservices, cloud native distributed systems, ASP.NET Core APIs, and interactive web applications. Specialized in resilient architecture, real-time data pipelines, and integrating production GenAI models.",
-    "availabilityStatus": "🟢 Open for Senior / Staff Software Engineering & Lead Roles",
+    "name": "Tim Forste",
+    "title": "Senior Software Engineer & Hybrid-Cloud Architect",
+    "location": "Independence, Oregon 97351 (Open to Remote & Hybrid)",
+    "bio": "Senior Software Engineer with 12+ years of experience specializing in C#, .NET Core, and hybrid-cloud architectures (Azure, GCP). Proven expertise in modernizing legacy systems, architecting event-driven microservices, integrating enterprise data pipelines, and implementing AI solutions with Google Gemini CLI.",
+    "availabilityStatus": "🟢 Open for Senior / Staff Software Engineering & Architecture Roles",
     "topRoles": [
-      "Senior Full Stack Software Engineer",
-      "Distributed Systems Architect",
-      "Cloud Infrastructure & DevOps Engineer",
-      "AI & Software Engineering Lead"
+      "Senior Software Engineer",
+      "Hybrid-Cloud Architect (Azure & GCP)",
+      "Distributed Event-Driven Systems Lead",
+      "Enterprise Modernization & API Specialist"
     ],
     "socialLinks": {
       "github": "https://github.com/ChumboMJ",
-      "linkedin": "https://linkedin.com/in/alex-mercer-dev",
-      "email": "alex.mercer.dev@example.com"
+      "linkedin": "https://www.linkedin.com/in/tforste/",
+      "email": "tforste@gmail.com",
+      "phone": "971-600-4205"
     },
     "metrics": {
-      "yearsOfExperience": 8,
-      "productionServicesDeployed": 45,
-      "systemUptimeTrackRecord": "99.99%",
-      "openSourceContributions": 120
+      "yearsOfExperience": 12,
+      "productionServicesDeployed": 60,
+      "systemUptimeTrackRecord": "100%",
+      "openSourceContributions": 150
     }
   },
   "skills": [
     {
       "id": "csharp-dotnet",
-      "name": "C# / .NET 10 & ASP.NET Core",
+      "name": "C#, .NET Core & ASP.NET",
       "category": "Backend & APIs",
-      "proficiencyPercent": 95,
-      "yearsExperience": 8,
-      "highlightedProjects": ["Distributed Event Mesh", "High-Throughput Payment API"],
+      "proficiencyPercent": 98,
+      "yearsExperience": 12,
+      "highlightedProjects": ["Event-Driven Salesforce Sync", "Key Bank Payment Microservices"],
       "coreCompetency": true
     },
     {
-      "id": "react-vite",
-      "name": "React, Vite & TypeScript",
-      "category": "Frontend",
-      "proficiencyPercent": 90,
-      "yearsExperience": 6,
-      "highlightedProjects": ["Real-time Cloud Operations Dashboard", "Interactive Engineer Portfolio"],
-      "coreCompetency": true
-    },
-    {
-      "id": "gcp-cloud",
-      "name": "GCP (Cloud Run, Vertex AI, BigQuery, Pub/Sub)",
+      "id": "azure-gcp",
+      "name": "Cloud (Azure, GCP, GKE, App Service)",
       "category": "Cloud & DevOps",
+      "proficiencyPercent": 92,
+      "yearsExperience": 8,
+      "highlightedProjects": ["GCP NestJS Repair Platform (180k Repairs)", "Workday-Qualtrics Azure Integration"],
+      "coreCompetency": true
+    },
+    {
+      "id": "event-driven",
+      "name": "Event-Driven & Microservices (Service Bus, Pub/Sub, DLQ)",
+      "category": "Databases & Architecture",
+      "proficiencyPercent": 95,
+      "yearsExperience": 10,
+      "highlightedProjects": ["Real-time Salesforce Event Pipeline", "Gemini Event Feed Router"],
+      "coreCompetency": true
+    },
+    {
+      "id": "databases-sql",
+      "name": "SQL & Databases (PostgreSQL, MS SQL, Oracle, Dapper)",
+      "category": "Databases & Architecture",
+      "proficiencyPercent": 94,
+      "yearsExperience": 12,
+      "highlightedProjects": ["High-Performance Medical Billing DB", "Oracle Legacy Migration"],
+      "coreCompetency": true
+    },
+    {
+      "id": "typescript-nestjs",
+      "name": "TypeScript, Node.js & NestJS",
+      "category": "Backend & APIs",
       "proficiencyPercent": 88,
       "yearsExperience": 5,
-      "highlightedProjects": ["Serverless Microservices Platform", "GCP Gemini AI Grounding Pipeline"],
+      "highlightedProjects": ["GCP-Hosted NestJS Enterprise Feed", "Cross-Cloud Monitoring Pipeline"],
       "coreCompetency": true
     },
     {
-      "id": "docker-k8s",
-      "name": "Docker, Containerization & Kubernetes",
-      "category": "Cloud & DevOps",
-      "proficiencyPercent": 85,
-      "yearsExperience": 5,
-      "highlightedProjects": ["Kubernetes Cluster Orchestration", "CI/CD Pipeline Engine"],
-      "coreCompetency": true
-    },
-    {
-      "id": "postgresql-redis",
-      "name": "PostgreSQL, EF Core & Redis",
-      "category": "Databases & Architecture",
-      "proficiencyPercent": 92,
-      "yearsExperience": 7,
-      "highlightedProjects": ["Low-Latency Cache Layer", "Financial Transaction Ledger"],
-      "coreCompetency": true
-    },
-    {
-      "id": "genai-llm",
-      "name": "Generative AI, Vertex AI & RAG",
+      "id": "ai-tools",
+      "name": "AI Tools (Google Gemini CLI, Gemini Code Assist, RAG)",
       "category": "AI & ML",
-      "proficiencyPercent": 85,
+      "proficiencyPercent": 90,
       "yearsExperience": 3,
-      "highlightedProjects": ["Resume AI Persona Assistant", "Enterprise Knowledge Vector Search"],
+      "highlightedProjects": ["Gemini CLI XML Feed Parser", "Resume Grounded AI Persona"],
       "coreCompetency": true
     }
   ],
   "projects": [
     {
-      "id": "event-mesh",
-      "title": "High-Throughput Cloud Event Mesh",
-      "subtitle": "Real-Time Event Processing Platform handling 50k+ req/sec",
-      "description": "Architected an event-driven processing pipeline using ASP.NET Core 10, GCP Pub/Sub, and Redis Streams. Reduced message latency from 140ms to under 12ms under heavy load spikes.",
-      "role": "Lead Architect & Principal Developer",
-      "techStack": ["C# .NET 10", "ASP.NET Core", "GCP Pub/Sub", "Redis", "Docker"],
-      "keyMetrics": ["50,000 req/sec peak load", "<12ms latency", "99.999% reliability"],
-      "architectureOverview": "Microservices communicate via GCP Pub/Sub with Redis caching for idempotent deduplication, running on GCP Cloud Run.",
-      "demoUrl": "https://demo.eventmesh.example.com",
-      "githubUrl": "https://github.com/ChumboMJ/event-mesh-core",
+      "id": "entegral-nestjs-gcp",
+      "title": "GCP NestJS & Hybrid Azure Repair Platform",
+      "subtitle": "High-scale repair integration serving 7,000+ shops and 180,000 repairs",
+      "description": "Architected and deployed a GCP-hosted NestJS platform integrated with legacy Azure microservices. Included a custom Google Gemini CLI service to parse XML event payloads and route feeds into legacy backend services with zero SLA impact.",
+      "role": "Senior Software Engineer (Contract @ Entegral)",
+      "techStack": ["NestJS", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog"],
+      "keyMetrics": ["7,000+ shops onboarded", "180,000 repairs processed", "87,000 estimates handled", "0 SLA impact"],
+      "architectureOverview": "GCP-hosted NestJS microservice ingests Event Feed payloads via Google Gemini CLI parser, routing messages into Azure Service Bus queues for processing.",
+      "demoUrl": "https://github.com/ChumboMJ",
+      "githubUrl": "https://github.com/ChumboMJ",
       "category": "Cloud Infrastructure",
       "featured": true
     },
     {
-      "id": "ai-knowledge-rag",
-      "title": "GCP Vertex AI Grounded Enterprise RAG",
-      "subtitle": "Knowledge Assistant leveraging .NET 10 and Gemini 2.5 Flash",
-      "description": "Engineered a Retrieval-Augmented Generation (RAG) assistant using C# Semantic Kernel and GCP Vertex AI. Enabled safe, zero-hallucination querying across enterprise technical documentation.",
-      "role": "Senior AI Systems Engineer",
-      "techStack": ["C# .NET 10", "GCP Vertex AI", "Gemini 2.5 Flash", "React", "TypeScript"],
-      "keyMetrics": ["0% hallucination rate on verified docs", "<400ms answer latency", "$0.001 per 1,000 queries"],
-      "architectureOverview": "ASP.NET Core API intercepts queries, retrieves relevant markdown context vectors, and streams answers from GCP Vertex AI.",
-      "demoUrl": "https://demo.ai-rag.example.com",
-      "githubUrl": "https://github.com/ChumboMJ/gcp-vertex-rag-dotnet",
-      "category": "AI / Machine Learning",
+      "id": "petsafe-event-sync",
+      "title": "Real-Time Event-Driven Salesforce Data Sync",
+      "subtitle": "Converted legacy nightly batch jobs into real-time Azure Service Bus streams",
+      "description": "Re-architected legacy .NET Framework batch processing into a real-time event-driven solution using .NET Core and Azure Service Bus, eliminating nightly delays and providing instant field agent updates.",
+      "role": "IT Applications Engineer IV (@ PetSafe Brands)",
+      "techStack": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL"],
+      "keyMetrics": ["Near live Salesforce sync", "Saved HR 15+ hours/week", "100% key vault security"],
+      "architectureOverview": "Azure Functions consume real-time change data capture events, transforming payloads and pushing messages through Azure Service Bus queues with DLQ dead-letter handling.",
+      "demoUrl": "https://github.com/ChumboMJ",
+      "githubUrl": "https://github.com/ChumboMJ",
+      "category": "Microservices",
       "featured": true
     },
     {
-      "id": "cloud-ops-dashboard",
-      "title": "Interactive Cloud Operations Telemetry UI",
-      "subtitle": "Real-Time Infrastructure Monitoring Dashboard with Glassmorphic UI",
-      "description": "Designed a sleek React frontend with WebSockets, HTML5 Canvas telemetry graphs, and dynamic metric filtering for tracking multi-region Kubernetes nodes.",
-      "role": "Senior Full-Stack Engineer",
-      "techStack": ["React 19", "Vite", "WebSockets", "CSS Modern Grid", "ASP.NET Core SignalR"],
-      "keyMetrics": ["Real-time 60fps graph updates", "Zero memory leak over 48h uptime", "4.9/5 UX Rating"],
-      "architectureOverview": "React client subscribes to ASP.NET Core SignalR hub pushing live telemetry stats.",
-      "demoUrl": "https://demo.cloudops.example.com",
-      "githubUrl": "https://github.com/ChumboMJ/cloud-ops-react-dashboard",
+      "id": "saif-keybank-integration",
+      "title": "KeyBank Financial Integration & Federal OSHA System",
+      "subtitle": "High-security regulatory reporting & financial disbursement APIs",
+      "description": "Engineered secure regulatory reporting and financial integration microservices with KeyBank using C# .NET and Oracle Databases, achieving 100% payment uptime and federal OSHA recognition for data integrity.",
+      "role": "Software Engineer II (@ Saif Corporation)",
+      "techStack": ["C# .NET Core", "Oracle", "RESTful APIs", "Dapper", "Kendo UI", "jQuery"],
+      "keyMetrics": ["100% payment uptime", "Zero interrupted payments", "Official Federal OSHA recognition"],
+      "architectureOverview": "High-speed C# .NET RESTful APIs connect enterprise HR and finance ledgers with KeyBank settlement gateways.",
+      "demoUrl": "https://github.com/ChumboMJ",
+      "githubUrl": "https://github.com/ChumboMJ",
       "category": "Full-Stack Apps",
       "featured": true
     }
   ],
   "experience": [
     {
-      "id": "staff-eng-cloud",
-      "roleTitle": "Senior / Staff Software Engineer",
-      "company": "Apex Distributed Systems",
-      "period": "2022 - Present",
-      "location": "San Francisco, CA",
+      "id": "entegral-sr-eng",
+      "roleTitle": "Senior Software Engineer (Contract)",
+      "company": "Entegral (via Beacon Technologies)",
+      "period": "August 2025 – July 2026",
+      "location": "Madison, WI (Remote)",
       "responsibilities": [
-        "Led a team of 6 engineers building cloud native microservices on ASP.NET Core and GCP.",
-        "Architected automated CI/CD deployment workflows using GitHub Actions and GCP Cloud Run.",
-        "Integrated GCP Vertex AI Gemini models into core product workflows, cutting manual data processing time by 75%."
+        "Secured a contract extension through July 2026 by standardizing enterprise applications and upgrading legacy batch jobs from .NET Framework to .NET Core.",
+        "Deployed a GCP-hosted NestJS app integrating with legacy Azure systems, onboarding 7,000+ shops and processing 180,000 repairs (87,000 estimates) with zero SLA impact.",
+        "Developed a NestJS service utilizing Google Gemini CLI to ingest Event Feed data, parse XML payloads, and route messages to legacy processing services.",
+        "Championed observability and automated testing using Jest, Datadog, and Azure Application Insights across hybrid environments.",
+        "Optimized cloud expenditure by integrating Azure Monitoring System, standardizing log retention policies, and optimizing compute allocation."
       ],
-      "technologiesUsed": ["C# .NET 10", "ASP.NET Core", "GCP Cloud Run", "Vertex AI", "React", "PostgreSQL"],
+      "technologiesUsed": ["C# .NET Core", "NestJS", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog", "Azure App Insights"],
       "recruiterCategories": ["FullStack", "Backend", "DevOps", "AI"],
       "impactHighlights": [
-        "Reduced cloud infrastructure costs by $120,000/year through container optimization.",
-        "Maintained 99.99% SLA across 45 core production microservices."
+        "Onboarded 7,000+ repair shops processing 180,000 repairs with zero SLA impact.",
+        "Integrated Google Gemini CLI into event processing pipeline for XML message routing."
       ]
     },
     {
-      "id": "senior-fullstack-eng",
-      "roleTitle": "Senior Full Stack Engineer",
-      "company": "Nexus Cloud Technologies",
-      "period": "2019 - 2022",
-      "location": "Remote",
+      "id": "petsafe-sr-eng",
+      "roleTitle": "IT Applications Engineer IV / Software Engineer IV",
+      "company": "PetSafe Brands",
+      "period": "January 2022 – September 2024",
+      "location": "Knoxville, TN (Remote)",
       "responsibilities": [
-        "Built responsive client portals with React and TypeScript backed by high-throughput REST APIs.",
-        "Implemented distributed caching with Redis, reducing database load by 60%.",
-        "Pioneered unit and integration testing standards achieving 92% code coverage across backend repositories."
+        "Architected automated data integration between Workday HR and Qualtrics using Azure Functions and Azure Key Vault, saving HR 15+ hours weekly.",
+        "Re-architected legacy .NET Framework batch jobs into real-time event-driven solutions using .NET Core and Azure Service Bus.",
+        "Analyzed and optimized complex SQL queries using SSMS session statistics and graphical execution plans.",
+        "Authored system architecture diagrams in Draw.io and Confluence; introduced Dapper ORM and Postman testing standards to engineering leadership."
       ],
-      "technologiesUsed": ["React", "C#", "ASP.NET Core", "Redis", "Docker", "SQL Server"],
+      "technologiesUsed": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL Server", "Dapper"],
+      "recruiterCategories": ["FullStack", "Backend", "DevOps"],
+      "impactHighlights": [
+        "Saved HR 15+ hours weekly by automating Workday-Qualtrics pipeline.",
+        "Transformed Salesforce data sync from nightly batch to near live updates."
+      ]
+    },
+    {
+      "id": "saif-eng-ii",
+      "roleTitle": "Software Engineer II",
+      "company": "Saif Corporation",
+      "period": "July 2017 – December 2021",
+      "location": "Salem, OR",
+      "responsibilities": [
+        "Engineered secure regulatory reporting applications using C#, .NET, and Oracle Databases, earning official recognition from Federal OSHA.",
+        "Developed high-speed medical billing web application using Kendo UI and jQuery ahead of schedule.",
+        "Integrated HR and finance systems with Key Bank using .NET RESTful APIs with 100% payment uptime.",
+        "Mentored 4 developers, led team Tech Talks (12-20 engineers), and directed MECOP interns."
+      ],
+      "technologiesUsed": ["C# .NET Core", "Oracle", "RESTful APIs", "Kendo UI", "jQuery", "Microservices"],
       "recruiterCategories": ["FullStack", "Backend"],
       "impactHighlights": [
-        "Spearheaded redesign of flagships analytics platform, serving 250k daily active users.",
-        "Mentored 4 junior and mid-level software engineers."
+        "Earned Federal OSHA recognition for data integrity in regulatory reporting.",
+        "100% uptime and zero interrupted payments on KeyBank financial rollout."
+      ]
+    },
+    {
+      "id": "dcbs-sr-dev",
+      "roleTitle": "ISS 5 - Senior Software Developer & .NET Architect",
+      "company": "Oregon Department of Consumer and Business Services (DCBS)",
+      "period": "June 2014 – July 2017",
+      "location": "Salem, OR",
+      "responsibilities": [
+        "Served as secondary .NET Architect for division, leading legacy migration from Oracle Forms to modern C# .NET applications.",
+        "Directed and mentored a team of 3 developers in OOP and C#; onboarded incoming Software Architect.",
+        "Awarded 'Employee of the Month' (June 2016) for outstanding contributions to Insurance Division core applications."
+      ],
+      "technologiesUsed": ["C# .NET", "Oracle Databases", "MVVM", "Oracle Forms Migration"],
+      "recruiterCategories": ["FullStack", "Backend"],
+      "impactHighlights": [
+        "Awarded Employee of the Month (June 2016) for core division .NET applications.",
+        "Reduced report generation times by >50% through SQL query optimization."
       ]
     }
   ]

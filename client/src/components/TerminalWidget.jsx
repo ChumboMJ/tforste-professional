@@ -4,7 +4,7 @@ import { Terminal, Send, X, CornerDownLeft, Sparkles, Trash2 } from 'lucide-reac
 export default function TerminalWidget({ isOpen, onClose }) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
-    { type: 'system', output: 'Welcome to Alex Mercer\'s Interactive .NET 10 CLI Terminal!\nType "help" or click a quick command pill below to execute.' }
+    { type: 'system', output: 'Welcome to Tim Forste\'s Interactive CLI Terminal!\nType "help" or click a quick command pill below to execute.' }
   ]);
   const [loading, setLoading] = useState(false);
   const terminalEndRef = useRef(null);
@@ -50,7 +50,7 @@ export default function TerminalWidget({ isOpen, onClose }) {
     'skills',
     'projects',
     'exp',
-    'ask What is your experience with .NET 10 & GCP?',
+    'ask What is your experience with C# .NET Core & Azure/GCP?',
     'cat resume.json',
     'clear'
   ];
@@ -89,7 +89,7 @@ export default function TerminalWidget({ isOpen, onClose }) {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
             <Terminal size={18} color="var(--accent-cyan)" />
-            <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>alex-mercer@portfolio:~ (ASP.NET Core 10 CLI)</span>
+            <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>tim-forste@portfolio:~ (.NET Core CLI)</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -155,7 +155,7 @@ export default function TerminalWidget({ isOpen, onClose }) {
             <div key={i} style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
               {h.type === 'user' ? (
                 <div style={{ color: 'var(--accent-cyan)' }}>
-                  <span style={{ color: 'var(--accent-emerald)' }}>alex-mercer@portfolio:~$</span> {h.output}
+                  <span style={{ color: 'var(--accent-emerald)' }}>tim-forste@portfolio:~$</span> {h.output}
                 </div>
               ) : h.type === 'error' ? (
                 <div style={{ color: '#ff5555' }}>{h.output}</div>

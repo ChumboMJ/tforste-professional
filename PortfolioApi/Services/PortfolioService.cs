@@ -181,7 +181,7 @@ public class PortfolioService : IPortfolioService
         // In production, this can send an email via GCP SendGrid / SES / Webhook
         return new ContactMessageResponse(
             true,
-            $"Thank you {request.Name}! Your message regarding '{request.Subject}' has been dispatched directly to Alex Mercer's inbox.",
+            $"Thank you {request.Name}! Your message regarding '{request.Subject}' has been dispatched directly to {_profile.Name}'s inbox.",
             DateTime.UtcNow
         );
     }
