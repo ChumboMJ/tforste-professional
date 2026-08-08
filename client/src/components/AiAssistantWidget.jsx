@@ -5,7 +5,7 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       sender: 'ai',
-      text: 'Hello! I am Tim Forste\'s AI Persona powered by GCP Gemini & .NET Core. I answer directly on Tim\'s behalf in the first person about my 12+ years of software engineering experience, C# .NET Core microservices, Azure/GCP hybrid cloud architecture, and Google Gemini CLI integrations. Ask me anything!',
+      text: 'Hello! I am Tim Forste\'s AI Persona powered by GCP Gemini & .NET Core. I answer directly on Tim\'s behalf in the first person about his 12+ years of software engineering experience, C# .NET Core microservices, Azure/GCP hybrid cloud architecture, and Google Gemini CLI integrations. Ask me anything!',
       suggestedFollowUps: [
         'What is your experience with .NET Core and Azure Service Bus?',
         'Tell me about your GCP NestJS project and Gemini CLI parsing',
