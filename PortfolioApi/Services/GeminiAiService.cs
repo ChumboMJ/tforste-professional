@@ -101,13 +101,21 @@ public class GeminiAiService : IGeminiAiService
         var q = query.ToLowerInvariant();
         string answer;
 
-        if (q.Contains("c#") || q.Contains(".net") || q.Contains("backend") || q.Contains("asp.net"))
+        if (q.Contains("education") || q.Contains("degree") || q.Contains("college") || q.Contains("school"))
         {
-            answer = "I have 12+ years of experience specializing in C#, .NET Core, and ASP.NET. I have modernized legacy batch jobs into real-time event-driven solutions using .NET Core, Azure Service Bus, and Dapper ORM, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
+            answer = "I completed about 75% of my Bachelor's degree in Software Engineering at Oregon Institute of Technology before accepting a full-time Software Developer role at the State of Oregon. I made the deliberate decision to focus on real-world enterprise software delivery, which launched my 12+ year career in .NET and cloud engineering.";
+        }
+        else if (q.Contains("orm") || q.Contains("dapper") || q.Contains("ef") || q.Contains("entity framework") || q.Contains("nhibernate"))
+        {
+            answer = "I have extensive ORM experience: I used NHibernate as the primary ORM at Saif Corporation, Entity Framework at PetSafe Brands and Entegral, and ADO.NET when needed. I am also a strong proponent of lightweight ORMs like Dapper, which I successfully introduced to engineering leadership at PetSafe.";
+        }
+        else if (q.Contains("c#") || q.Contains(".net") || q.Contains("backend") || q.Contains("asp.net"))
+        {
+            answer = "I have 11+ years of experience specializing in C#, .NET Core, and ASP.NET. I have led legacy modernization efforts (upgrading ASP.NET to .NET Core), architected event-driven microservices using Azure Service Bus, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
         }
         else if (q.Contains("gcp") || q.Contains("azure") || q.Contains("cloud") || q.Contains("gemini") || q.Contains("docker"))
         {
-            answer = "I have extensive hybrid-cloud experience across Azure and GCP. At Entegral, I deployed a GCP-hosted NestJS application onboarding 7,000+ shops processing 180,000 repairs, and built a NestJS service utilizing the Google Gemini CLI to ingest and parse XML event payloads.";
+            answer = "I have 8+ years of hybrid-cloud experience across Azure and GCP. At Entegral, I deployed a GCP-hosted NestJS application onboarding 7,000+ shops processing 180,000 repairs, and built a NestJS service utilizing the Google Gemini CLI to ingest and parse XML event payloads.";
         }
         else if (q.Contains("petsafe") || q.Contains("workday") || q.Contains("qualtrics") || q.Contains("service bus"))
         {

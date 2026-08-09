@@ -3,7 +3,7 @@
     "name": "Tim Forste",
     "title": "Senior Software Engineer & Hybrid-Cloud Architect",
     "location": "Independence, Oregon 97351 (Open to Remote & Hybrid)",
-    "bio": "Senior Software Engineer with 12+ years of experience specializing in C#, .NET Core, and hybrid-cloud architectures (Azure, GCP). Proven expertise in modernizing legacy systems, architecting event-driven microservices, integrating enterprise data pipelines, and implementing AI solutions with Google Gemini CLI.",
+    "bio": "Senior Software Engineer with 12+ years of experience specializing in C#, .NET Core, and hybrid-cloud architectures (Azure, GCP). Proven expertise in modernizing legacy systems, upgrading ASP.NET to .NET Core, architecting event-driven microservices, integrating enterprise data pipelines, and implementing AI solutions with Google Gemini CLI.",
     "availabilityStatus": "🟢 Open for Senior / Staff Software Engineering & Architecture Roles",
     "topRoles": [
       "Senior Software Engineer",
@@ -17,6 +17,11 @@
       "email": "tforste@gmail.com",
       "phone": "971-600-4205"
     },
+    "education": {
+      "institution": "Oregon Institute of Technology – Wilsonville, OR",
+      "fieldOfStudy": "Software Engineering",
+      "summary": "Completed approximately 75% of a Bachelor's degree in Software Engineering before accepting a full-time Software Developer role at the State of Oregon, deliberately focusing on real-world enterprise software delivery and impact."
+    },
     "metrics": {
       "yearsOfExperience": 12,
       "productionServicesDeployed": 60,
@@ -27,11 +32,20 @@
   "skills": [
     {
       "id": "csharp-dotnet",
-      "name": "C#, .NET Core & ASP.NET",
+      "name": "C#, .NET Core & ASP.NET (11 Yrs)",
       "category": "Backend & APIs",
       "proficiencyPercent": 98,
-      "yearsExperience": 12,
-      "highlightedProjects": ["Event-Driven Salesforce Sync", "Key Bank Payment Microservices"],
+      "yearsExperience": 11,
+      "highlightedProjects": ["Event-Driven Salesforce Sync", "Key Bank Payment Microservices", "ASP.NET to .NET Core Migrations"],
+      "coreCompetency": true
+    },
+    {
+      "id": "rest-apis-graphql",
+      "name": "RESTful APIs, GraphQL & Middleware (9 Yrs)",
+      "category": "Backend & APIs",
+      "proficiencyPercent": 96,
+      "yearsExperience": 9,
+      "highlightedProjects": ["Enterprise REST API Lifecycle", "SOAP & GraphQL Integration", "KeyBank Payment APIs"],
       "coreCompetency": true
     },
     {
@@ -53,26 +67,35 @@
       "coreCompetency": true
     },
     {
-      "id": "databases-sql",
-      "name": "SQL & Databases (PostgreSQL, MS SQL, Oracle, Dapper)",
+      "id": "databases-sql-orms",
+      "name": "SQL, Oracle, MS SQL & ORMs (EF Core, Dapper, NHibernate)",
       "category": "Databases & Architecture",
-      "proficiencyPercent": 94,
+      "proficiencyPercent": 95,
       "yearsExperience": 12,
-      "highlightedProjects": ["High-Performance Medical Billing DB", "Oracle Legacy Migration"],
+      "highlightedProjects": ["9 Yrs MS SQL Server", "12 Yrs Total DB (Oracle, PostgreSQL, Cosmos)", "Strong proponent of Dapper ORM"],
       "coreCompetency": true
     },
     {
       "id": "typescript-nestjs",
-      "name": "TypeScript, Node.js & NestJS",
+      "name": "TypeScript, Node.js & NestJS (6 Yrs)",
       "category": "Backend & APIs",
       "proficiencyPercent": 88,
-      "yearsExperience": 5,
+      "yearsExperience": 6,
       "highlightedProjects": ["GCP-Hosted NestJS Enterprise Feed", "Cross-Cloud Monitoring Pipeline"],
       "coreCompetency": true
     },
     {
+      "id": "devops-cicd",
+      "name": "Git & CI/CD Pipelines (Azure DevOps, BitBucket, Git)",
+      "category": "Cloud & DevOps",
+      "proficiencyPercent": 94,
+      "yearsExperience": 9,
+      "highlightedProjects": ["Azure DevOps Automated Workflows", "Branching Strategies & Code Reviews"],
+      "coreCompetency": true
+    },
+    {
       "id": "ai-tools",
-      "name": "AI Tools (Google Gemini CLI, Gemini Code Assist, RAG)",
+      "name": "AI Tools (Google Gemini CLI, Gemini Code Assist, Copilot)",
       "category": "AI & ML",
       "proficiencyPercent": 90,
       "yearsExperience": 3,
@@ -85,9 +108,9 @@
       "id": "entegral-nestjs-gcp",
       "title": "GCP NestJS & Hybrid Azure Repair Platform",
       "subtitle": "High-scale repair integration serving 7,000+ shops and 180,000 repairs",
-      "description": "Architected and deployed a GCP-hosted NestJS platform integrated with legacy Azure microservices. Included a custom Google Gemini CLI service to parse XML event payloads and route feeds into legacy backend services with zero SLA impact.",
+      "description": "Architected and deployed a GCP-hosted NestJS platform integrated with legacy Azure microservices. Built a NestJS service utilizing Google Gemini CLI to ingest Event Feed data, parse XML payloads, and route messages to legacy processing services with zero SLA impact.",
       "role": "Senior Software Engineer (Contract @ Entegral)",
-      "techStack": ["NestJS", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog"],
+      "techStack": ["NestJS", "TypeScript", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog"],
       "keyMetrics": ["7,000+ shops onboarded", "180,000 repairs processed", "87,000 estimates handled", "0 SLA impact"],
       "architectureOverview": "GCP-hosted NestJS microservice ingests Event Feed payloads via Google Gemini CLI parser, routing messages into Azure Service Bus queues for processing.",
       "demoUrl": "https://github.com/ChumboMJ",
@@ -99,9 +122,9 @@
       "id": "petsafe-event-sync",
       "title": "Real-Time Event-Driven Salesforce Data Sync",
       "subtitle": "Converted legacy nightly batch jobs into real-time Azure Service Bus streams",
-      "description": "Re-architected legacy .NET Framework batch processing into a real-time event-driven solution using .NET Core and Azure Service Bus, eliminating nightly delays and providing instant field agent updates.",
+      "description": "Re-architected legacy .NET Framework batch processing into a real-time event-driven solution using .NET Core and Azure Service Bus, eliminating nightly delays and providing instant field agent updates. Introduced Dapper ORM and Postman standards.",
       "role": "IT Applications Engineer IV (@ PetSafe Brands)",
-      "techStack": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL"],
+      "techStack": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL Server", "Dapper"],
       "keyMetrics": ["Near live Salesforce sync", "Saved HR 15+ hours/week", "100% key vault security"],
       "architectureOverview": "Azure Functions consume real-time change data capture events, transforming payloads and pushing messages through Azure Service Bus queues with DLQ dead-letter handling.",
       "demoUrl": "https://github.com/ChumboMJ",
@@ -113,9 +136,9 @@
       "id": "saif-keybank-integration",
       "title": "KeyBank Financial Integration & Federal OSHA System",
       "subtitle": "High-security regulatory reporting & financial disbursement APIs",
-      "description": "Engineered secure regulatory reporting and financial integration microservices with KeyBank using C# .NET and Oracle Databases, achieving 100% payment uptime and federal OSHA recognition for data integrity.",
+      "description": "Engineered secure regulatory reporting applications using C# .NET and Oracle, earning official recognition from Federal OSHA as a top partner for data integrity. Integrated HR and finance systems with KeyBank using .NET RESTful APIs with 100% payment uptime.",
       "role": "Software Engineer II (@ Saif Corporation)",
-      "techStack": ["C# .NET Core", "Oracle", "RESTful APIs", "Dapper", "Kendo UI", "jQuery"],
+      "techStack": ["C# .NET Core", "Oracle", "RESTful APIs", "NHibernate", "Kendo UI", "jQuery"],
       "keyMetrics": ["100% payment uptime", "Zero interrupted payments", "Official Federal OSHA recognition"],
       "architectureOverview": "High-speed C# .NET RESTful APIs connect enterprise HR and finance ledgers with KeyBank settlement gateways.",
       "demoUrl": "https://github.com/ChumboMJ",
@@ -132,13 +155,13 @@
       "period": "August 2025 – July 2026",
       "location": "Madison, WI (Remote)",
       "responsibilities": [
-        "Secured a contract extension through July 2026 by standardizing enterprise applications and upgrading legacy batch jobs from .NET Framework to .NET Core.",
+        "Secured contract extension through July 2026 by standardizing enterprise application ecosystem and upgrading legacy batch jobs from .NET Framework to .NET Core.",
         "Deployed a GCP-hosted NestJS app integrating with legacy Azure systems, onboarding 7,000+ shops and processing 180,000 repairs (87,000 estimates) with zero SLA impact.",
         "Developed a NestJS service utilizing Google Gemini CLI to ingest Event Feed data, parse XML payloads, and route messages to legacy processing services.",
-        "Championed observability and automated testing using Jest, Datadog, and Azure Application Insights across hybrid environments.",
+        "Championed high observability and automated testing using Jest, implementing cross-cloud tracking across Datadog and Azure Application Insights.",
         "Optimized cloud expenditure by integrating Azure Monitoring System, standardizing log retention policies, and optimizing compute allocation."
       ],
-      "technologiesUsed": ["C# .NET Core", "NestJS", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog", "Azure App Insights"],
+      "technologiesUsed": ["C# .NET Core", "NestJS", "TypeScript", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog"],
       "recruiterCategories": ["FullStack", "Backend", "DevOps", "AI"],
       "impactHighlights": [
         "Onboarded 7,000+ repair shops processing 180,000 repairs with zero SLA impact.",
@@ -152,12 +175,12 @@
       "period": "January 2022 – September 2024",
       "location": "Knoxville, TN (Remote)",
       "responsibilities": [
-        "Architected automated data integration between Workday HR and Qualtrics using Azure Functions and Azure Key Vault, saving HR 15+ hours weekly.",
+        "Architected automated HR integration between Workday and Qualtrics using Azure Functions and Key Vault, eliminating manual entry and saving HR 15+ hours weekly.",
         "Re-architected legacy .NET Framework batch jobs into real-time event-driven solutions using .NET Core and Azure Service Bus.",
-        "Analyzed and optimized complex SQL queries using SSMS session statistics and graphical execution plans.",
+        "Analyzed and optimized complex SQL query performance using SSMS session statistics and graphical execution plans.",
         "Authored system architecture diagrams in Draw.io and Confluence; introduced Dapper ORM and Postman testing standards to engineering leadership."
       ],
-      "technologiesUsed": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL Server", "Dapper"],
+      "technologiesUsed": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL Server", "Dapper ORM", "JetBrains Rider"],
       "recruiterCategories": ["FullStack", "Backend", "DevOps"],
       "impactHighlights": [
         "Saved HR 15+ hours weekly by automating Workday-Qualtrics pipeline.",
@@ -171,16 +194,16 @@
       "period": "July 2017 – December 2021",
       "location": "Salem, OR",
       "responsibilities": [
-        "Engineered secure regulatory reporting applications using C#, .NET, and Oracle Databases, earning official recognition from Federal OSHA.",
-        "Developed high-speed medical billing web application using Kendo UI and jQuery ahead of schedule.",
-        "Integrated HR and finance systems with Key Bank using .NET RESTful APIs with 100% payment uptime.",
-        "Mentored 4 developers, led team Tech Talks (12-20 engineers), and directed MECOP interns."
+        "Engineered regulatory reporting applications using C#, .NET, and Oracle Databases, earning official recognition from Federal OSHA for data integrity.",
+        "Developed high-speed medical billing web application using Kendo UI and jQuery, migrating data entry team off legacy desktop platform ahead of schedule.",
+        "Integrated HR and finance systems with KeyBank using .NET RESTful APIs and Microservices with 100% payment uptime.",
+        "Mentored 4 new developers, led team Tech Talks for 12-20 software engineers, and directed MECOP interns through full-cycle projects."
       ],
-      "technologiesUsed": ["C# .NET Core", "Oracle", "RESTful APIs", "Kendo UI", "jQuery", "Microservices"],
+      "technologiesUsed": ["C# .NET Core", "Oracle", "NHibernate", "RESTful APIs", "TypeScript", "Kendo UI", "jQuery", "Visual Studio"],
       "recruiterCategories": ["FullStack", "Backend"],
       "impactHighlights": [
         "Earned Federal OSHA recognition for data integrity in regulatory reporting.",
-        "100% uptime and zero interrupted payments on KeyBank financial rollout."
+        "100% payment uptime and zero interrupted payments on KeyBank financial rollout."
       ]
     },
     {
@@ -190,11 +213,12 @@
       "period": "June 2014 – July 2017",
       "location": "Salem, OR",
       "responsibilities": [
-        "Served as secondary .NET Architect for division, leading legacy migration from Oracle Forms to modern C# .NET applications.",
-        "Directed and mentored a team of 3 developers in OOP and C#; onboarded incoming Software Architect.",
-        "Awarded 'Employee of the Month' (June 2016) for outstanding contributions to Insurance Division core applications."
+        "Served as secondary .NET Architect for division, leading legacy migration from Oracle Forms applications into modern C# .NET applications.",
+        "Directed and mentored a team of 3 developers in OOP, C#, and custom enterprise frameworks; onboarded incoming Software Architect.",
+        "Awarded 'Employee of the Month' (June 2016) for outstanding contributions to Insurance Division core .NET applications.",
+        "Optimized complex SQL database queries for on-demand reporting, reducing report generation times by over 50%."
       ],
-      "technologiesUsed": ["C# .NET", "Oracle Databases", "MVVM", "Oracle Forms Migration"],
+      "technologiesUsed": ["C# .NET", "Oracle Databases", "MVVM", "Oracle Forms Migration", "Visual Studio"],
       "recruiterCategories": ["FullStack", "Backend"],
       "impactHighlights": [
         "Awarded Employee of the Month (June 2016) for core division .NET applications.",
