@@ -5,6 +5,7 @@ A full-stack, enterprise-grade interactive software engineer portfolio and resum
 [![CI/CD Pipeline](https://github.com/ChumboMJ/tforste-professional/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/ChumboMJ/tforste-professional/actions/workflows/ci-cd.yml)
 [![CodeQL Security Scan](https://github.com/ChumboMJ/tforste-professional/actions/workflows/codeql.yml/badge.svg)](https://github.com/ChumboMJ/tforste-professional/actions/workflows/codeql.yml)
 [![AI Code Review](https://github.com/ChumboMJ/tforste-professional/actions/workflows/ai-code-review.yml/badge.svg)](https://github.com/ChumboMJ/tforste-professional/actions/workflows/ai-code-review.yml)
+[![GCP Cloud Run CD](https://github.com/ChumboMJ/tforste-professional/actions/workflows/cd-deploy.yml/badge.svg)](https://github.com/ChumboMJ/tforste-professional/actions/workflows/cd-deploy.yml)
 
 ---
 
