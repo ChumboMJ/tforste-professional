@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import SkillsMatrix from './components/SkillsMatrix';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectsShowcase from './components/ProjectsShowcase';
+import ArchitecturePage from './components/ArchitecturePage';
 import TerminalWidget from './components/TerminalWidget';
 import AiAssistantWidget from './components/AiAssistantWidget';
 import ContactModal from './components/ContactModal';
@@ -12,6 +13,7 @@ import { Terminal, Bot, Heart, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function App() {
   const [profile, setProfile] = useState(null);
+  const [activeView, setActiveView] = useState('resume'); // 'resume' | 'architecture'
   const [recruiterPerspective, setRecruiterPerspective] = useState('All');
   const [theme, setTheme] = useState('dark');
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -34,6 +36,8 @@ export default function App() {
   return (
     <div className="app-root">
       <Header
+        activeView={activeView}
+        setActiveView={setActiveView}
         recruiterPerspective={recruiterPerspective}
         setRecruiterPerspective={setRecruiterPerspective}
         theme={theme}
@@ -43,18 +47,27 @@ export default function App() {
       />
 
       <main>
-        <HeroSection
-          profile={profile}
-          onOpenAiChat={() => setIsAiChatOpen(true)}
-          onOpenTerminal={() => setIsTerminalOpen(true)}
-          onOpenContact={() => setIsContactOpen(true)}
-        />
+        {activeView === 'resume' ? (
+          <>
+            <HeroSection
+              profile={profile}
+              onOpenAiChat={() => setIsAiChatOpen(true)}
+              onOpenTerminal={() => setIsTerminalOpen(true)}
+              onOpenContact={() => setIsContactOpen(true)}
+            />
 
-        <SkillsMatrix recruiterPerspective={recruiterPerspective} />
-        
-        <ExperienceTimeline recruiterPerspective={recruiterPerspective} />
+            <SkillsMatrix recruiterPerspective={recruiterPerspective} />
+            
+            <ExperienceTimeline recruiterPerspective={recruiterPerspective} />
 
-        <ProjectsShowcase />
+            <ProjectsShowcase />
+          </>
+        ) : (
+          <ArchitecturePage
+            onOpenAiChat={() => setIsAiChatOpen(true)}
+            onOpenTerminal={() => setIsTerminalOpen(true)}
+          />
+        )}
       </main>
 
       <footer style={{

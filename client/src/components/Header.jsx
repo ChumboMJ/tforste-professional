@@ -2,6 +2,8 @@ import React from 'react';
 import { Terminal, Bot, Printer, Sun, Moon, Filter, Sparkles } from 'lucide-react';
 
 export default function Header({ 
+  activeView,
+  setActiveView,
   recruiterPerspective, 
   setRecruiterPerspective, 
   theme, 
@@ -56,6 +58,54 @@ export default function Header({
             Senior Software Engineer & Hybrid-Cloud Architect
           </div>
         </div>
+      </div>
+
+      {/* Main Navigation Tabs */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.35rem',
+        background: 'var(--bg-secondary)',
+        padding: '0.35rem',
+        borderRadius: 'var(--radius-full)',
+        border: '1px solid var(--bg-card-border)'
+      }}>
+        <button
+          onClick={() => setActiveView('resume')}
+          style={{
+            padding: '0.4rem 1rem',
+            borderRadius: 'var(--radius-full)',
+            border: 'none',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            background: activeView === 'resume' 
+              ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+              : 'transparent',
+            color: activeView === 'resume' ? '#0a0e17' : 'var(--text-secondary)'
+          }}
+        >
+          📄 Interactive Resume
+        </button>
+        <button
+          onClick={() => setActiveView('architecture')}
+          style={{
+            padding: '0.4rem 1rem',
+            borderRadius: 'var(--radius-full)',
+            border: 'none',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            background: activeView === 'architecture' 
+              ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+              : 'transparent',
+            color: activeView === 'architecture' ? '#0a0e17' : 'var(--text-secondary)'
+          }}
+        >
+          ⚙️ System Architecture
+        </button>
       </div>
 
       {/* Recruiter Perspective Filter Pills */}
