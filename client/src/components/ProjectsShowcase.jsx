@@ -138,12 +138,31 @@ export default function ProjectsShowcase() {
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', justifyContent: 'center' }}>
-                      <Github size={14} /> Source Code
-                    </a>
-                    <a href={proj.demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', justifyContent: 'center' }}>
-                      <ExternalLink size={14} /> Live Demo
-                    </a>
+                    {proj.githubUrl && (
+                      <a href={proj.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', justifyContent: 'center' }}>
+                        <Github size={14} /> Source Code
+                      </a>
+                    )}
+                    {proj.demoUrl && (
+                      <a href={proj.demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ flex: 1, padding: '0.5rem', fontSize: '0.82rem', justifyContent: 'center' }}>
+                        <ExternalLink size={14} /> Live Demo
+                      </a>
+                    )}
+                    {!proj.githubUrl && !proj.demoUrl && (
+                      <div style={{
+                        width: '100%',
+                        padding: '0.5rem 0.8rem',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        color: 'var(--text-muted)',
+                        background: 'var(--bg-secondary)',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid var(--bg-card-border)',
+                        textAlign: 'center'
+                      }}>
+                        🔒 Proprietary Enterprise System (Closed Source)
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

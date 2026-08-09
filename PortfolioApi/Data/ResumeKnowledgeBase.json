@@ -113,8 +113,8 @@
       "techStack": ["NestJS", "TypeScript", "Google Gemini CLI", "GCP GKE", "Azure", "Jest", "Datadog"],
       "keyMetrics": ["7,000+ shops onboarded", "180,000 repairs processed", "87,000 estimates handled", "0 SLA impact"],
       "architectureOverview": "GCP-hosted NestJS microservice ingests Event Feed payloads via Google Gemini CLI parser, routing messages into Azure Service Bus queues for processing.",
-      "demoUrl": "https://github.com/ChumboMJ",
-      "githubUrl": "https://github.com/ChumboMJ",
+      "demoUrl": "",
+      "githubUrl": "",
       "category": "Cloud Infrastructure",
       "featured": true
     },
@@ -127,8 +127,8 @@
       "techStack": ["C# .NET Core", "Azure Functions", "Azure Service Bus", "Azure Key Vault", "MS SQL Server", "Dapper"],
       "keyMetrics": ["Near live Salesforce sync", "Saved HR 15+ hours/week", "100% key vault security"],
       "architectureOverview": "Azure Functions consume real-time change data capture events, transforming payloads and pushing messages through Azure Service Bus queues with DLQ dead-letter handling.",
-      "demoUrl": "https://github.com/ChumboMJ",
-      "githubUrl": "https://github.com/ChumboMJ",
+      "demoUrl": "",
+      "githubUrl": "",
       "category": "Microservices",
       "featured": true
     },
@@ -141,8 +141,8 @@
       "techStack": ["C# .NET Core", "Oracle", "RESTful APIs", "NHibernate", "Kendo UI", "jQuery"],
       "keyMetrics": ["100% payment uptime", "Zero interrupted payments", "Official Federal OSHA recognition"],
       "architectureOverview": "High-speed C# .NET RESTful APIs connect enterprise HR and finance ledgers with KeyBank settlement gateways.",
-      "demoUrl": "https://github.com/ChumboMJ",
-      "githubUrl": "https://github.com/ChumboMJ",
+      "demoUrl": "",
+      "githubUrl": "",
       "category": "Full-Stack Apps",
       "featured": true
     }

@@ -122,7 +122,7 @@ public class PortfolioService : IPortfolioService
             ),
 
             "projects" => new TerminalResponse(
-                string.Join("\n\n", _projects.Select(p => $"🚀 {p.Title.ToUpper()}\n   {p.Subtitle}\n   Tech: {string.Join(", ", p.TechStack)}\n   GitHub: {p.GithubUrl}")),
+                string.Join("\n\n", _projects.Select(p => $"🚀 {p.Title.ToUpper()}\n   {p.Subtitle}\n   Tech: {string.Join(", ", p.TechStack)}\n   Role: {p.Role}")),
                 "text"
             ),
 
