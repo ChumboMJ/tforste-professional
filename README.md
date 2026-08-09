@@ -59,6 +59,19 @@ docker compose up --build
 
 ---
 
+## Automated Code Review & Security Pipeline
+
+This repository leverages 100% free automated code review tools to enforce senior engineering standards on every Pull Request:
+
+1. **🤖 GCP Gemini AI Automated Code Reviewer (`.github/workflows/ai-code-review.yml`)**:
+   - Triggers on PRs to `main`. Passes the PR git diff to GCP Gemini, generating line-by-line code review feedback, architecture recommendations, and security suggestions directly on your Pull Request.
+2. **🛡️ GitHub CodeQL Static Security Analysis (`.github/workflows/codeql.yml`)**:
+   - Runs deep semantic static security analysis for C# and TypeScript/JavaScript. Scans for OWASP Top 10 vulnerabilities, SQL injection risks, and bad coding practices.
+3. **🧹 Automated Unit Testing & Build Validation (`.github/workflows/ci-cd.yml`)**:
+   - Executes parallel .NET 10 xUnit and React Vitest suites on every commit.
+
+---
+
 ## Running Automated Tests
 
 ### Backend xUnit Test Suite (.NET 10)

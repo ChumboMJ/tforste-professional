@@ -1,0 +1,44 @@
+name: "CodeQL Security & Static Analysis"
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 6 * * 1' # Weekly scan every Monday at 6am UTC
+
+jobs:
+  analyze:
+    name: CodeQL Static Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'csharp', 'javascript-typescript' ]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended,security-and-quality
+
+      - name: Build C# Code for CodeQL
+        if: matrix.language == 'csharp'
+        run: |
+          dotnet restore PortfolioApi/PortfolioApi.csproj
+          dotnet build PortfolioApi/PortfolioApi.csproj --no-restore -c Release
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
