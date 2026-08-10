@@ -35,6 +35,7 @@ jobs:
 
       - name: Enable GCP Required Services & APIs
         if: env.GCP_PROJECT_ID != ''
+        continue-on-error: true
         run: |
           gcloud services enable run.googleapis.com \
                                  artifactregistry.googleapis.com \
