@@ -33,6 +33,13 @@ jobs:
         if: env.GCP_PROJECT_ID != ''
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Enable GCP Required Services & APIs
+        if: env.GCP_PROJECT_ID != ''
+        run: |
+          gcloud services enable run.googleapis.com \
+                                 artifactregistry.googleapis.com \
+                                 generativelanguage.googleapis.com --quiet
+
       - name: Configure Docker for GCP Artifact Registry
         if: env.GCP_PROJECT_ID != ''
         run: |
