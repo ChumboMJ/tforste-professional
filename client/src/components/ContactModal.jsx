@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Send, X, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactModal({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', phone: '', subject: '', message: '' });
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ export default function ContactModal({ isOpen, onClose }) {
 
       if (res.ok && data.success) {
         setStatus({ type: 'success', message: data.confirmationMessage });
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', company: '', phone: '', subject: '', message: '' });
       } else {
         setStatus({ type: 'error', message: data.confirmationMessage || 'Failed to submit.' });
       }
@@ -114,6 +114,25 @@ export default function ContactModal({ isOpen, onClose }) {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="sarah@company.com"
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                borderRadius: '8px',
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--bg-card-border)',
+                color: 'var(--text-primary)',
+                outline: 'none'
+              }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-muted)' }}>COMPANY / ORGANIZATION (OPTIONAL)</label>
+            <input
+              type="text"
+              value={formData.company}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              placeholder="e.g. Beacon Technologies / Enterprise Corp"
               style={{
                 width: '100%',
                 padding: '0.75rem',

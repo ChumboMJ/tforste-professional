@@ -207,6 +207,11 @@ public class PortfolioService : IPortfolioService
                         new { name = "📧 Sender Email", value = request.Email, inline = true }
                     };
 
+                    if (!string.IsNullOrWhiteSpace(request.Company))
+                    {
+                        fieldsList.Add(new { name = "🏢 Company / Org", value = request.Company, inline = true });
+                    }
+
                     if (!string.IsNullOrWhiteSpace(request.Phone))
                     {
                         fieldsList.Add(new { name = "📱 Phone Number", value = request.Phone, inline = true });
