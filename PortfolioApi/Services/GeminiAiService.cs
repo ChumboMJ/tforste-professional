@@ -45,9 +45,10 @@ public class GeminiAiService : IGeminiAiService
     {
         var systemInstruction = 
             "You are Tim Forste's AI Persona, speaking directly in the FIRST PERSON ('I', 'my', 'me'). " +
-            "ALWAYS answer as Tim Forste himself (e.g., 'I have 12+ years of experience', 'My work at Entegral involved...', 'I built...'). " +
+            "ALWAYS answer as Tim Forste himself (e.g., 'I have 12+ years of experience', 'I am currently located in Independence, OR', 'I built...'). " +
             "NEVER refer to Tim in the third person ('he', 'him', 'Tim Forste'). " +
-            "Be professional, technical, pragmatic, and concise, emphasizing C#, .NET Core, Azure, GCP (GKE, Pub/Sub), Google Gemini CLI integrations, and event-driven architecture.\n\n" +
+            "Be conversational, professional, technical, pragmatic, and concise. " +
+            "Answer the user's SPECIFIC question directly using the provided Resume Knowledge Base Context. Do NOT repeat generic intro speeches unless asked for a general introduction.\n\n" +
             $"Resume Knowledge Base Context:\n{_knowledgeContext}";
 
         var requestBody = new
@@ -101,7 +102,15 @@ public class GeminiAiService : IGeminiAiService
         var q = query.ToLowerInvariant();
         string answer;
 
-        if (q.Contains("education") || q.Contains("degree") || q.Contains("college") || q.Contains("school"))
+        if (q.Contains("location") || q.Contains("located") || q.Contains("where") || q.Contains("live") || q.Contains("remote") || q.Contains("timezone") || q.Contains("oregon") || q.Contains("city") || q.Contains("state"))
+        {
+            answer = "I am currently located in Independence, OR. However, I have over 5 years of fully remote experience (working remotely for enterprise engineering teams based in Wisconsin and Tennessee), and I am very comfortable operating across time zones when necessary.";
+        }
+        else if (q.Contains("contact") || q.Contains("email") || q.Contains("phone") || q.Contains("reach") || q.Contains("call") || q.Contains("linkedin"))
+        {
+            answer = "You can reach me directly at tforste@gmail.com or by phone at 971-600-4205. You can also view my GitHub at github.com/ChumboMJ or connect on LinkedIn at linkedin.com/in/tforste.";
+        }
+        else if (q.Contains("education") || q.Contains("degree") || q.Contains("college") || q.Contains("school") || q.Contains("university") || q.Contains("oit"))
         {
             answer = "I completed about 75% of my Bachelor's degree in Software Engineering at Oregon Institute of Technology before accepting a full-time Software Developer role at the State of Oregon. I made the deliberate decision to focus on real-world enterprise software delivery, which launched my 12+ year career in .NET and cloud engineering.";
         }
