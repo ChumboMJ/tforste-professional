@@ -3,6 +3,9 @@ name: Continuous Deployment (GCP Cloud Run)
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'GEMINI.md'
+      - '.gemini/**'
   workflow_dispatch:
 
 env:
