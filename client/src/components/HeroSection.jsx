@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Terminal, Bot, Mail, ShieldCheck, Cpu, Cloud, Code } from 'lucide-react';
+import { Terminal, Bot, Mail, Cpu, Globe, Database, Cloud } from 'lucide-react';
 
 export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onOpenContact }) {
   const canvasRef = useRef(null);
@@ -145,33 +145,33 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}><Cpu size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.yearsOfExperience}+ Yrs
+                {profile.metrics?.yearsOfExperience}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Software Engineering</div>
             </div>
 
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
-              <div style={{ color: 'var(--accent-indigo)', marginBottom: '0.5rem' }}><Cloud size={28} /></div>
+              <div style={{ color: 'var(--accent-indigo)', marginBottom: '0.5rem' }}><Globe size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.productionServicesDeployed}+
+                {profile.metrics?.fullyRemoteDelivery}
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Microservices Deployed</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Remote Delivery (3 Time Zones)</div>
             </div>
 
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
-              <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><ShieldCheck size={28} /></div>
+              <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><Database size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.systemUptimeTrackRecord}
+                {profile.metrics?.sqlQuerySpeedLift}
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>SLA Track Record</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>SQL Query Speed Lift</div>
             </div>
 
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
-              <div style={{ color: 'var(--accent-amber)', marginBottom: '0.5rem' }}><Code size={28} /></div>
+              <div style={{ color: 'var(--accent-amber)', marginBottom: '0.5rem' }}><Cloud size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.openSourceContributions}+
+                {profile.metrics?.distributedSystemsExperience}
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Open Source PRs</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Distributed Microservices</div>
             </div>
           </div>
 

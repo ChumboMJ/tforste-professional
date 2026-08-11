@@ -24,10 +24,10 @@
       "summary": "Completed approximately 75% of a Bachelor's degree in Software Engineering before accepting a full-time Software Developer role at the State of Oregon, deliberately focusing on real-world enterprise software delivery and impact."
     },
     "metrics": {
-      "yearsOfExperience": 12,
-      "productionServicesDeployed": 60,
-      "systemUptimeTrackRecord": "100%",
-      "openSourceContributions": 150
+      "yearsOfExperience": "12 Yrs",
+      "fullyRemoteDelivery": "5+ Yrs",
+      "sqlQuerySpeedLift": "50%+",
+      "distributedSystemsExperience": "7 Yrs"
     }
   },
   "skills": [
