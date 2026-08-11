@@ -30,6 +30,18 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
       ]
     },
     {
+      id: 'discord-webhook',
+      title: 'Discord Webhook Real-Time Push Notifications',
+      category: 'Messaging & Notifications',
+      badge: 'Discord API / Webhooks',
+      why: 'Provides instant, zero-cost mobile push notifications for incoming recruiter contact form submissions, bypassing transactional email delay.',
+      highlights: [
+        'Fire-and-forget asynchronous Task dispatch preventing thread blocking on HTTP POST /api/contact',
+        'Rich Discord Embed card formatting rendering Sender Name, Email, Company, Phone, Subject, and Message',
+        'Securely injected via DISCORD_WEBHOOK_URL in ASP.NET Core IConfiguration and GitHub Secrets'
+      ]
+    },
+    {
       id: 'docker',
       title: 'Multi-Stage Docker & Compose Profiles',
       category: 'Containerization',
@@ -103,7 +115,7 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
               </ul>
             </div>
 
-            {/* API Layer */}
+            {/* Backend Layer */}
             <div style={{
               padding: '1.25rem',
               background: 'var(--bg-secondary)',
@@ -115,6 +127,7 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
               </div>
               <ul style={{ listStyle: 'none', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 <li>• ASP.NET Core 10 Minimal APIs</li>
+                <li>• Discord Webhook Real-Time Push Alerts</li>
                 <li>• PortfolioService & Knowledge Base</li>
                 <li>• CLI Terminal Parser Engine</li>
                 <li>• Environment Loggers (Trace/Warning)</li>
