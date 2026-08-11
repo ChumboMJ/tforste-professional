@@ -10,30 +10,50 @@ namespace PortfolioApi.Tests;
 
 public class GeminiAiServiceTests
 {
-    private readonly GeminiAiService _aiService;
+    private readonly GeminiAiService _service;
 
     public GeminiAiServiceTests()
     {
         var mockEnv = new Mock<IHostEnvironment>();
+        var mockConfig = new Mock<IConfiguration>();
+        var mockLogger = new Mock<ILogger<GeminiAiService>>();
+
         var basePath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "PortfolioApi"));
         mockEnv.Setup(e => e.ContentRootPath).Returns(basePath);
 
-        var mockConfig = new Mock<IConfiguration>();
-        var mockLogger = new Mock<ILogger<GeminiAiService>>();
-        var httpClient = new HttpClient();
-
-        _aiService = new GeminiAiService(httpClient, mockConfig.Object, mockEnv.Object, mockLogger.Object);
+        _service = new GeminiAiService(new HttpClient(), mockConfig.Object, mockEnv.Object, mockLogger.Object);
     }
 
     [Fact]
-    public async Task AskAsync_ReturnsGroundedResponse_InLocalMode()
+    public async Task AskAsync_ReturnsGroundedFallbackResponses_ForVariousTopics()
     {
-        var request = new AiChatRequest("What experience do you have with C# and .NET?");
-        var response = await _aiService.AskAsync(request);
+        var emptyReq = new AiChatRequest("");
+        var emptyResult = await _service.AskAsync(emptyReq);
+        Assert.NotNull(emptyResult.Answer);
+        Assert.True(emptyResult.GroundedInResume);
 
-        Assert.NotNull(response);
-        Assert.True(response.GroundedInResume);
-        Assert.Contains("C#", response.Answer, StringComparison.OrdinalIgnoreCase);
-        Assert.NotEmpty(response.SuggestedFollowUps);
+        var educationReq = new AiChatRequest("Tell me about your education and degree at OIT");
+        var educationResult = await _service.AskAsync(educationReq);
+        Assert.Contains("Oregon Institute of Technology", educationResult.Answer);
+
+        var ormReq = new AiChatRequest("What is your experience with ORMs like Dapper and EF?");
+        var ormResult = await _service.AskAsync(ormReq);
+        Assert.Contains("Dapper", ormResult.Answer);
+
+        var dotnetReq = new AiChatRequest("Describe your C# and .NET experience");
+        var dotnetResult = await _service.AskAsync(dotnetReq);
+        Assert.Contains(".NET", dotnetResult.Answer);
+
+        var cloudReq = new AiChatRequest("Tell me about GCP, Azure, and Docker");
+        var cloudResult = await _service.AskAsync(cloudReq);
+        Assert.Contains("Azure", cloudResult.Answer);
+
+        var petSafeReq = new AiChatRequest("What did you do at PetSafe Brands?");
+        var petSafeResult = await _service.AskAsync(petSafeReq);
+        Assert.Contains("PetSafe", petSafeResult.Answer);
+
+        var leadershipReq = new AiChatRequest("What experience do you have with mentorship and leadership at Saif?");
+        var leadershipResult = await _service.AskAsync(leadershipReq);
+        Assert.Contains("Saif", leadershipResult.Answer);
     }
 }
