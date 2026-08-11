@@ -7,3 +7,7 @@
 
 ## CI/CD & Deployment Notification Guidelines
 - **Direct GitHub Actions Links**: Whenever deploying to production or pushing to `main`, always provide a direct clickable markdown link to the GitHub Actions workflow runs page (`https://github.com/ChumboMJ/tforste-professional/actions`) so the user can easily monitor pipeline progress with a single click.
+
+## CLI Command Approval Preferences
+- **Auto-Approve npm & dotnet Commands**: Automatically execute development, build, and test commands (`npm` and `dotnet` commands such as `npm run build`, `npm test`, `dotnet test`, `dotnet build`) seamlessly without asking for manual confirmation prompts.
+
