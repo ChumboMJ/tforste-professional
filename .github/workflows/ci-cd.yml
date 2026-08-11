@@ -3,8 +3,14 @@ name: CI/CD Pipeline - ASP.NET Core 10 & React
 on:
   push:
     branches: [ main, develop ]
+    paths-ignore:
+      - 'GEMINI.md'
+      - '.gemini/**'
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - 'GEMINI.md'
+      - '.gemini/**'
 
 jobs:
   backend-tests:

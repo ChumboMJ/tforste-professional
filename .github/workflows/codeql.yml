@@ -3,8 +3,14 @@ name: "CodeQL Security & Static Analysis"
 on:
   push:
     branches: [ "main", "develop" ]
+    paths-ignore:
+      - 'GEMINI.md'
+      - '.gemini/**'
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - 'GEMINI.md'
+      - '.gemini/**'
   schedule:
     - cron: '0 6 * * 1' # Weekly scan every Monday at 6am UTC
 
