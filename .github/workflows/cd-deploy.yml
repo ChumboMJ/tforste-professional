@@ -75,7 +75,7 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --port 8080 \
-            --set-env-vars "ASPNETCORE_ENVIRONMENT=Production,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" \
+            --set-env-vars "ASPNETCORE_ENVIRONMENT=Production,GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}" \
             --min-instances 0 \
             --max-instances 2 \
             --memory 512Mi \
