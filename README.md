@@ -64,28 +64,55 @@ docker compose up --build
 
 ## Automated Code Review & Security Pipeline
 
-This repository leverages 100% free automated code review tools to enforce senior engineering standards on every Pull Request:
+This repository leverages 100% free automated code review and quality enforcement tools on every Pull Request and commit:
 
-1. **🤖 GCP Gemini AI Automated Code Reviewer (`.github/workflows/ai-code-review.yml`)**:
+1. **📏 70% Minimum Code Coverage Quality Gate (`.github/workflows/ci-cd.yml`)**:
+   - Enforces a mandatory **70.00% minimum line coverage threshold** on `PortfolioApi` using Coverlet and a custom validator script (`.github/scripts/check-coverage.js`).
+   - Compiler-generated code (`*.generated.cs`) is automatically excluded via `PortfolioApi.Tests/coverlet.runsettings`.
+   - **PR Merges to `main` will fail** if backend code coverage falls below 70.00%.
+2. **🤖 GCP Gemini AI Automated Code Reviewer (`.github/workflows/ai-code-review.yml`)**:
    - Triggers on PRs to `main`. Passes the PR git diff to GCP Gemini, generating line-by-line code review feedback, architecture recommendations, and security suggestions directly on your Pull Request.
-2. **🛡️ GitHub CodeQL Static Security Analysis (`.github/workflows/codeql.yml`)**:
+3. **🛡️ GitHub CodeQL Static Security Analysis (`.github/workflows/codeql.yml`)**:
    - Runs deep semantic static security analysis for C# and TypeScript/JavaScript. Scans for OWASP Top 10 vulnerabilities, SQL injection risks, and bad coding practices.
-3. **🧹 Automated Unit Testing & Build Validation (`.github/workflows/ci-cd.yml`)**:
+4. **🧹 Automated Unit Testing & Build Validation (`.github/workflows/ci-cd.yml`)**:
    - Executes parallel .NET 10 xUnit and React Vitest suites on every commit.
 
 ---
 
-## Running Automated Tests
+## Running Automated Tests & Code Coverage Locally
 
-### Backend xUnit Test Suite (.NET 10)
+### 1. Backend xUnit Test Suite & Coverage Check (.NET 10)
+Run the backend test suite with Coverlet coverage collection and verify the 70% threshold gate locally:
+
 ```powershell
-dotnet test PortfolioApi.Tests/PortfolioApi.Tests.csproj
+# Step 1: Run xUnit tests with Coverlet coverage collection
+dotnet test PortfolioApi.Tests/PortfolioApi.Tests.csproj --settings PortfolioApi.Tests/coverlet.runsettings --collect:"XPlat Code Coverage"
+
+# Step 2: Enforce the 70% code coverage threshold gate locally
+node .github/scripts/check-coverage.js
 ```
 
-### Frontend Vitest Suite (React)
+> **Expected Output**:
+> ```text
+> 🔍 Inspecting coverage report: PortfolioApi.Tests\TestResults\...\coverage.cobertura.xml
+> --------------------------------------------------
+> 📊 Current Backend Line Coverage: 84.03%
+> 🎯 Required Minimum Threshold:     70.00%
+> --------------------------------------------------
+> ✅ POLICY SUCCESS: Backend line coverage requirement met (84.03% >= 70%)!
+> ```
+
+### 2. Frontend Vitest Suite & Coverage Check (React 19)
+Run frontend Vitest unit tests and generate a V8 coverage report:
+
 ```powershell
 cd client
+
+# Run Vitest unit tests
 npm test
+
+# Run Vitest with V8 code coverage report
+npm run test:coverage
 ```
 
 ---

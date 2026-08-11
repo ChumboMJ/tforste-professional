@@ -30,6 +30,18 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
       ]
     },
     {
+      id: 'coverage-gate',
+      title: 'Automated 70% Code Coverage Quality Gate',
+      category: 'DevOps & Code Quality',
+      badge: 'Coverlet / Cobertura XML / Node.js Gate',
+      why: 'Enforces strict code quality policies, ensuring all PRs and pushes to main maintain at least 70% line coverage before triggering production deployments.',
+      highlights: [
+        'Coverlet Cobertura XML report generation with compiler-generated code exclusions (coverlet.runsettings)',
+        'Custom Node.js inspection script (.github/scripts/check-coverage.js) parsing line-rate metrics',
+        'Blocks automated deployment to GCP Cloud Run if coverage drops below the required 70.00% threshold'
+      ]
+    },
+    {
       id: 'discord-webhook',
       title: 'Discord Webhook Real-Time Push Notifications',
       category: 'Messaging & Notifications',
@@ -96,6 +108,25 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
             gap: '1.25rem',
             position: 'relative'
           }}>
+            {/* CI/CD & DevOps Layer */}
+            <div style={{
+              padding: '1.25rem',
+              background: 'var(--bg-secondary)',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--bg-card-border)'
+            }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-purple)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                DEVOPS & PIPELINES (GITHUB ACTIONS)
+              </div>
+              <ul style={{ listStyle: 'none', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                <li>• Automated 70% Code Coverage Gate</li>
+                <li>• GitHub CodeQL Static Security Scanning</li>
+                <li>• GCP Gemini AI Automated PR Code Reviewer</li>
+                <li>• Multi-Stage Docker Container Artifacts</li>
+                <li>• GCP Cloud Run CD (Zero-Downtime Deployment)</li>
+              </ul>
+            </div>
+
             {/* Client Layer */}
             <div style={{
               padding: '1.25rem',
