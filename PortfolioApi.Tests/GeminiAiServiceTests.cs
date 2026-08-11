@@ -32,6 +32,11 @@ public class GeminiAiServiceTests
         Assert.NotNull(emptyResult.Answer);
         Assert.True(emptyResult.GroundedInResume);
 
+        var locationReq = new AiChatRequest("Where is Tim Located?");
+        var locationResult = await _service.AskAsync(locationReq);
+        Assert.Contains("Independence, OR", locationResult.Answer);
+        Assert.Contains("remote", locationResult.Answer, StringComparison.OrdinalIgnoreCase);
+
         var educationReq = new AiChatRequest("Tell me about your education and degree at OIT");
         var educationResult = await _service.AskAsync(educationReq);
         Assert.Contains("Oregon Institute of Technology", educationResult.Answer);
