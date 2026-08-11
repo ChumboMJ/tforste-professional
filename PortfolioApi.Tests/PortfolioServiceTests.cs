@@ -32,7 +32,10 @@ public class PortfolioServiceTests
         var profile = _service.GetProfile();
         Assert.NotNull(profile);
         Assert.Equal("Tim Forste", profile.Name);
-        Assert.True(profile.Metrics.YearsOfExperience >= 12);
+        Assert.Equal("12 Yrs", profile.Metrics.YearsOfExperience);
+        Assert.Equal("5+ Yrs", profile.Metrics.FullyRemoteDelivery);
+        Assert.Equal("50%+", profile.Metrics.SqlQuerySpeedLift);
+        Assert.Equal("7 Yrs", profile.Metrics.DistributedSystemsExperience);
     }
 
     [Fact]

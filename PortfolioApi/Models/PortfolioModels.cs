@@ -12,10 +12,10 @@ public record ProfileDto(
 );
 
 public record CoreMetrics(
-    int YearsOfExperience,
-    int ProductionServicesDeployed,
-    string SystemUptimeTrackRecord,
-    int OpenSourceContributions
+    string YearsOfExperience,
+    string FullyRemoteDelivery,
+    string SqlQuerySpeedLift,
+    string DistributedSystemsExperience
 );
 
 public record SkillItem(
