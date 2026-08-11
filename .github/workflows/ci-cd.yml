@@ -25,8 +25,11 @@ jobs:
       - name: Build Backend
         run: dotnet build PortfolioApi.Tests/PortfolioApi.Tests.csproj --no-restore -c Release
 
-      - name: Execute xUnit Tests
-        run: dotnet test PortfolioApi.Tests/PortfolioApi.Tests.csproj --no-build -c Release --verbosity normal
+      - name: Execute xUnit Tests with Code Coverage
+        run: dotnet test PortfolioApi.Tests/PortfolioApi.Tests.csproj --no-build -c Release --settings PortfolioApi.Tests/coverlet.runsettings --collect:"XPlat Code Coverage"
+
+      - name: Enforce 70% Backend Code Coverage Gate for Merges to Main
+        run: node .github/scripts/check-coverage.js
 
   frontend-tests:
     name: Build & Test React Client
@@ -45,10 +48,10 @@ jobs:
           cd client
           npm ci
 
-      - name: Run Vitest Unit Tests
+      - name: Run Vitest Unit Tests & Generate Coverage
         run: |
           cd client
-          npm test
+          npm run test:coverage
 
       - name: Build React Bundle
         run: |
