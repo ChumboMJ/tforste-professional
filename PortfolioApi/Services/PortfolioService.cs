@@ -10,10 +10,15 @@ public class PortfolioService : IPortfolioService
     private readonly List<ProjectItem> _projects;
     private readonly List<ExperienceItem> _experiences;
     private readonly IGeminiAiService _aiService;
+    private readonly IConfiguration _configuration;
+    private readonly HttpClient _httpClient;
 
-    public PortfolioService(IHostEnvironment env, IGeminiAiService aiService)
+    public PortfolioService(IHostEnvironment env, IGeminiAiService aiService, IConfiguration configuration, HttpClient? httpClient = null)
     {
         _aiService = aiService;
+        _configuration = configuration;
+        _httpClient = httpClient ?? new HttpClient();
+
         var jsonPath = Path.Combine(env.ContentRootPath, "Data", "ResumeKnowledgeBase.json");
 
         if (!File.Exists(jsonPath))
@@ -178,7 +183,46 @@ public class PortfolioService : IPortfolioService
             return new ContactMessageResponse(false, "Name, email, and message are required fields.", DateTime.UtcNow);
         }
 
-        // In production, this can send an email via GCP SendGrid / SES / Webhook
+        // Fire-and-forget Discord Webhook dispatch if DISCORD_WEBHOOK_URL is configured
+        var webhookUrl = _configuration["DISCORD_WEBHOOK_URL"] ?? Environment.GetEnvironmentVariable("DISCORD_WEBHOOK_URL");
+        if (!string.IsNullOrWhiteSpace(webhookUrl))
+        {
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    var discordPayload = new
+                    {
+                        username = "Portfolio Contact Bot",
+                        embeds = new[]
+                        {
+                            new
+                            {
+                                title = "📩 New Portfolio Contact Inquiry",
+                                color = 65534, // Aqua Cyan
+                                fields = new[]
+                                {
+                                    new { name = "👤 Sender Name", value = request.Name, inline = true },
+                                    new { name = "📧 Sender Email", value = request.Email, inline = true },
+                                    new { name = "📝 Subject", value = string.IsNullOrWhiteSpace(request.Subject) ? "General Inquiry" : request.Subject, inline = false },
+                                    new { name = "💬 Message", value = request.Message, inline = false }
+                                },
+                                footer = new { text = "Tim Forste Portfolio App • ASP.NET Core 10 Web API" },
+                                timestamp = DateTime.UtcNow.ToString("o")
+                            }
+                        }
+                    };
+
+                    var content = new StringContent(JsonSerializer.Serialize(discordPayload), System.Text.Encoding.UTF8, "application/json");
+                    await _httpClient.PostAsync(webhookUrl, content);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[Discord Webhook Warning] Failed to dispatch contact message: {ex.Message}");
+                }
+            });
+        }
+
         return new ContactMessageResponse(
             true,
             $"Thank you {request.Name}! Your message regarding '{request.Subject}' has been dispatched directly to {_profile.Name}'s inbox.",

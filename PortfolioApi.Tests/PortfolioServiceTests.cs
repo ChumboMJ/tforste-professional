@@ -14,6 +14,7 @@ public class PortfolioServiceTests
     {
         var mockEnv = new Mock<IHostEnvironment>();
         var mockAi = new Mock<IGeminiAiService>();
+        var mockConfig = new Mock<Microsoft.Extensions.Configuration.IConfiguration>();
         
         // Root path is parent directory where Data/ResumeKnowledgeBase.json resides
         var basePath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "PortfolioApi"));
@@ -22,7 +23,7 @@ public class PortfolioServiceTests
         mockAi.Setup(a => a.AskAsync(It.IsAny<AiChatRequest>()))
               .ReturnsAsync(new AiChatResponse("AI answer test", new List<string> { "follow up" }, "MockEngine", true));
 
-        _service = new PortfolioService(mockEnv.Object, mockAi.Object);
+        _service = new PortfolioService(mockEnv.Object, mockAi.Object, mockConfig.Object);
     }
 
     [Fact]
