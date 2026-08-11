@@ -183,6 +183,16 @@ public class PortfolioService : IPortfolioService
             return new ContactMessageResponse(false, "Name, email, and message are required fields.", DateTime.UtcNow);
         }
 
+        // Basic phone number validation if provided
+        if (!string.IsNullOrWhiteSpace(request.Phone))
+        {
+            var digitCount = request.Phone.Count(char.IsDigit);
+            if (digitCount < 7 || digitCount > 15)
+            {
+                return new ContactMessageResponse(false, "Please provide a valid phone number (at least 7 digits).", DateTime.UtcNow);
+            }
+        }
+
         // Fire-and-forget Discord Webhook dispatch if DISCORD_WEBHOOK_URL is configured
         var webhookUrl = _configuration["DISCORD_WEBHOOK_URL"] ?? Environment.GetEnvironmentVariable("DISCORD_WEBHOOK_URL");
         if (!string.IsNullOrWhiteSpace(webhookUrl))
@@ -191,6 +201,20 @@ public class PortfolioService : IPortfolioService
             {
                 try
                 {
+                    var fieldsList = new List<object>
+                    {
+                        new { name = "👤 Sender Name", value = request.Name, inline = true },
+                        new { name = "📧 Sender Email", value = request.Email, inline = true }
+                    };
+
+                    if (!string.IsNullOrWhiteSpace(request.Phone))
+                    {
+                        fieldsList.Add(new { name = "📱 Phone Number", value = request.Phone, inline = true });
+                    }
+
+                    fieldsList.Add(new { name = "📝 Subject", value = string.IsNullOrWhiteSpace(request.Subject) ? "General Inquiry" : request.Subject, inline = false });
+                    fieldsList.Add(new { name = "💬 Message", value = request.Message, inline = false });
+
                     var discordPayload = new
                     {
                         username = "Portfolio Contact Bot",
@@ -200,13 +224,7 @@ public class PortfolioService : IPortfolioService
                             {
                                 title = "📩 New Portfolio Contact Inquiry",
                                 color = 65534, // Aqua Cyan
-                                fields = new[]
-                                {
-                                    new { name = "👤 Sender Name", value = request.Name, inline = true },
-                                    new { name = "📧 Sender Email", value = request.Email, inline = true },
-                                    new { name = "📝 Subject", value = string.IsNullOrWhiteSpace(request.Subject) ? "General Inquiry" : request.Subject, inline = false },
-                                    new { name = "💬 Message", value = request.Message, inline = false }
-                                },
+                                fields = fieldsList.ToArray(),
                                 footer = new { text = "Tim Forste Portfolio App • ASP.NET Core 10 Web API" },
                                 timestamp = DateTime.UtcNow.ToString("o")
                             }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Send, X, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactModal({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,9 +22,9 @@ export default function ContactModal({ isOpen, onClose }) {
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
         setStatus({ type: 'success', message: data.confirmationMessage });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
         setStatus({ type: 'error', message: data.confirmationMessage || 'Failed to submit.' });
       }
@@ -114,6 +114,25 @@ export default function ContactModal({ isOpen, onClose }) {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="sarah@company.com"
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                borderRadius: '8px',
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--bg-card-border)',
+                color: 'var(--text-primary)',
+                outline: 'none'
+              }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.35rem', color: 'var(--text-muted)' }}>PHONE NUMBER (OPTIONAL)</label>
+            <input
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              placeholder="(555) 000-0000"
               style={{
                 width: '100%',
                 padding: '0.75rem',

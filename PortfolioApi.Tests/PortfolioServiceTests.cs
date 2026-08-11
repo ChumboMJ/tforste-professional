@@ -75,12 +75,15 @@ public class PortfolioServiceTests
     }
 
     [Fact]
-    public void SubmitContactMessage_AcceptsValidInput()
+    public void SubmitContactMessage_ValidatesPhoneNumberIfProvided()
     {
-        var validReq = new ContactMessageRequest("Jane Doe", "jane@example.com", "Job Opportunity", "Hello Alex!");
-        var result = _service.SubmitContactMessage(validReq);
+        var invalidPhoneReq = new ContactMessageRequest("Jane Doe", "jane@example.com", "Job", "Hello", "123");
+        var result = _service.SubmitContactMessage(invalidPhoneReq);
+        Assert.False(result.Success);
+        Assert.Contains("phone", result.ConfirmationMessage, StringComparison.OrdinalIgnoreCase);
 
-        Assert.True(result.Success);
-        Assert.Contains("dispatched", result.ConfirmationMessage, StringComparison.OrdinalIgnoreCase);
+        var validPhoneReq = new ContactMessageRequest("Jane Doe", "jane@example.com", "Job", "Hello", "(503) 555-0199");
+        var validResult = _service.SubmitContactMessage(validPhoneReq);
+        Assert.True(validResult.Success);
     }
 }
