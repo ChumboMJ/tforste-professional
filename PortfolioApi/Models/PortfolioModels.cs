@@ -68,7 +68,8 @@ public record ContactMessageRequest(
     string Email,
     string Subject,
     string Message,
-    string? Phone = null
+    string? Phone = null,
+    string? Company = null
 );
 
 public record ContactMessageResponse(
