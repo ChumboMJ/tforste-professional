@@ -1,5 +1,6 @@
 import React from 'react';
 import { Terminal, Bot, Printer, Sun, Moon, Filter, Sparkles } from 'lucide-react';
+import profilePic from '../assets/profile.png';
 
 export default function Header({ 
   activeView,
@@ -36,20 +37,18 @@ export default function Header({
     }}>
       {/* Brand / Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div style={{
-          width: '42px',
-          height: '42px',
-          borderRadius: '12px',
-          background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#0a0e17',
-          fontWeight: 800,
-          fontSize: '1.25rem'
-        }}>
-          TF
-        </div>
+        <img 
+          src={profilePic} 
+          alt="Tim Forste" 
+          style={{
+            width: '46px',
+            height: '46px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '2px solid var(--accent-cyan)',
+            boxShadow: '0 0 12px rgba(0, 242, 254, 0.35)'
+          }} 
+        />
         <div>
           <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>
             Tim Forste <span className="gradient-text">.NET Core</span>
@@ -108,41 +107,43 @@ export default function Header({
         </button>
       </div>
 
-      {/* Recruiter Perspective Filter Pills */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.35rem',
-        background: 'var(--bg-secondary)',
-        padding: '0.35rem',
-        borderRadius: 'var(--radius-full)',
-        border: '1px solid var(--bg-card-border)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-          <Filter size={14} /> Recruiter View:
+      {/* Recruiter Perspective Filter Pills (Only visible on Interactive Resume view) */}
+      {activeView === 'resume' && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.35rem',
+          background: 'var(--bg-secondary)',
+          padding: '0.35rem',
+          borderRadius: 'var(--radius-full)',
+          border: '1px solid var(--bg-card-border)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            <Filter size={14} /> Recruiter View:
+          </div>
+          {perspectives.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setRecruiterPerspective(p.id)}
+              style={{
+                padding: '0.35rem 0.85rem',
+                borderRadius: 'var(--radius-full)',
+                border: 'none',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                background: recruiterPerspective === p.id 
+                  ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+                  : 'transparent',
+                color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
+              }}
+            >
+              {p.label}
+            </button>
+          ))}
         </div>
-        {perspectives.map((p) => (
-          <button
-            key={p.id}
-            onClick={() => setRecruiterPerspective(p.id)}
-            style={{
-              padding: '0.35rem 0.85rem',
-              borderRadius: 'var(--radius-full)',
-              border: 'none',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              background: recruiterPerspective === p.id 
-                ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
-                : 'transparent',
-              color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
-            }}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
+      )}
 
       {/* Action Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
