@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Cpu, Server, Cloud, ShieldCheck, Terminal, GitBranch, Cpu as Chip, Layers, CheckCircle2, Sparkles, Box, ArrowRight } from 'lucide-react';
+import ArchitectureDiagramExact from './ArchitectureDiagramExact';
 
 export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -105,106 +106,8 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
             <span className="badge" style={{ padding: '0.35rem 0.85rem' }}>GCP Gemini 2.5/1.5 Flash Grounding Flow</span>
           </div>
 
-          {/* Interactive Layer Flow Diagram */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.5rem',
-            background: 'var(--bg-secondary)',
-            padding: '1.75rem',
-            borderRadius: 'var(--radius-sm)',
-            border: '1px solid var(--bg-card-border)'
-          }}>
-            
-            {/* 1. CLIENT LAYER */}
-            <div style={{
-              background: 'rgba(0, 242, 254, 0.04)',
-              border: '1px solid var(--accent-cyan)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '1.25rem'
-            }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-cyan)', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-                CLIENT LAYER (REACT 19 FRONTEND)
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--bg-card-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>Interactive Portfolio UI</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>User Browsing & Case Studies</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--accent-cyan)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-cyan)' }}>'Ask AI Persona' Widget</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Floating Recruiter Chat Modal</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--accent-purple)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-purple)' }}>CLI Terminal Component</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Executes <code style={{ color: 'var(--accent-cyan)' }}>ask &lt;question&gt;</code></div>
-                </div>
-              </div>
-            </div>
-
-            {/* FLOW ARROW 1 */}
-            <div style={{ textAlign: 'center', color: 'var(--accent-cyan)', fontWeight: 800, fontSize: '1rem', margin: '-0.5rem 0' }}>
-              ↓ HTTP POST /api/ai/ask & /api/contact
-            </div>
-
-            {/* 2. BACKEND API LAYER */}
-            <div style={{
-              background: 'rgba(111, 76, 255, 0.04)',
-              border: '1px solid var(--accent-indigo)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '1.25rem'
-            }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-indigo)', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-                BACKEND API LAYER (.NET 10 WEB API)
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--bg-card-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>ASP.NET Core 10 Web API</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Minimal APIs, CORS & Controllers</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--accent-indigo)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-indigo)' }}>GeminiAiService (.NET C#)</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Prompt Assembly & Grounding Engine</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--bg-card-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>Resume & Projects Dataset</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Structured ResumeKnowledgeBase.json</div>
-                </div>
-              </div>
-            </div>
-
-            {/* FLOW ARROW 2 */}
-            <div style={{ textAlign: 'center', color: 'var(--accent-emerald)', fontWeight: 800, fontSize: '1rem', margin: '-0.5rem 0' }}>
-              ↓ Grounded RAG Prompt Request / Fallback Engine
-            </div>
-
-            {/* 3. GCP CLOUD & AI LAYER */}
-            <div style={{
-              background: 'rgba(16, 185, 129, 0.04)',
-              border: '1px solid var(--accent-emerald)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '1.25rem'
-            }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-emerald)', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '1rem' }}>
-                GCP CLOUD & GENERATIVE AI GROUNDING
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--accent-emerald)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-emerald)' }}>GCP Vertex AI / Gemini 2.5 Flash</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>1M+ Context Token Inference Engine</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--bg-card-border)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>Grounded System Context</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>First-Person Persona & Project Metrics</div>
-                </div>
-                <div style={{ padding: '0.85rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--accent-amber)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-amber)' }}>Zero-Downtime Fallback Engine</div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>100% Offline Response Availability</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          {/* Exact Mermaid System Flow Rendered in React */}
+          <ArchitectureDiagramExact />
         </div>
 
         {/* Architectural Decision Cards */}
