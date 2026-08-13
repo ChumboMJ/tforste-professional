@@ -108,41 +108,43 @@ export default function Header({
         </button>
       </div>
 
-      {/* Recruiter Perspective Filter Pills */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.35rem',
-        background: 'var(--bg-secondary)',
-        padding: '0.35rem',
-        borderRadius: 'var(--radius-full)',
-        border: '1px solid var(--bg-card-border)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-          <Filter size={14} /> Recruiter View:
+      {/* Recruiter Perspective Filter Pills (Only visible on Interactive Resume view) */}
+      {activeView === 'resume' && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.35rem',
+          background: 'var(--bg-secondary)',
+          padding: '0.35rem',
+          borderRadius: 'var(--radius-full)',
+          border: '1px solid var(--bg-card-border)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            <Filter size={14} /> Recruiter View:
+          </div>
+          {perspectives.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setRecruiterPerspective(p.id)}
+              style={{
+                padding: '0.35rem 0.85rem',
+                borderRadius: 'var(--radius-full)',
+                border: 'none',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                background: recruiterPerspective === p.id 
+                  ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+                  : 'transparent',
+                color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
+              }}
+            >
+              {p.label}
+            </button>
+          ))}
         </div>
-        {perspectives.map((p) => (
-          <button
-            key={p.id}
-            onClick={() => setRecruiterPerspective(p.id)}
-            style={{
-              padding: '0.35rem 0.85rem',
-              borderRadius: 'var(--radius-full)',
-              border: 'none',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              background: recruiterPerspective === p.id 
-                ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
-                : 'transparent',
-              color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
-            }}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
+      )}
 
       {/* Action Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
