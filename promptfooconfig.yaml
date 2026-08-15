@@ -59,7 +59,7 @@ tests:
       message: 'What ORMs do you prefer to use?'
     assert:
       - type: icontains
-        value: 'EF Core'
+        value: 'Entity Framework'
       - type: icontains
         value: 'Dapper'
 
