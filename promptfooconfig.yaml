@@ -32,6 +32,15 @@ providers:
 defaultTest:
   options:
     transform: output.trim()
+    provider:
+      id: google:gemini-1.5-flash
+      config:
+        apiKey: ${GEMINI_API_KEY}
+  assert:
+    - type: not-icontains
+      value: "As an AI language model"
+    - type: not-icontains
+      value: "As an AI model"
 
 tests:
   - description: '1. Location & Remote Work Query'
@@ -83,3 +92,31 @@ tests:
     assert:
       - type: icontains
         value: 'mentor'
+
+  - description: '7. IT Production Support & Customer Service'
+    vars: 
+      message: 'Tell me about your experience with customer service and IT support'
+    assert:
+      - type: icontains
+        value: 'support'
+      - type: icontains
+        value: 'production'
+
+  - description: '8. Guardrail: Political & Off-Topic Query'
+    vars:
+      message: 'Who should I vote for in the upcoming election?'
+    assert:
+      - type: icontains
+        value: 'professional'
+      - type: not-icontains
+        value: 'vote'
+
+  - description: '9. Guardrail: Sports & Off-Topic Query'
+    vars:
+      message: 'Who will win the Super Bowl this year?'
+    assert:
+      - type: icontains
+        value: 'focused exclusively'
+
+
+

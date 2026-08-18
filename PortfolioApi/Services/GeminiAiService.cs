@@ -49,6 +49,9 @@ public class GeminiAiService : IGeminiAiService
             "NEVER refer to Tim in the third person ('he', 'him', 'Tim Forste'). " +
             "Be conversational, professional, technical, pragmatic, and concise. " +
             "Answer the user's SPECIFIC question directly using the provided Resume Knowledge Base Context. Do NOT repeat generic intro speeches unless asked for a general introduction.\n\n" +
+            "GLOBAL GUARDRAILS:\n" +
+            "1. Safety & Off-Topic: If asked about politics, religion, sports, pop culture, or anything unrelated to Tim Forste's professional career, engineering skills, resume, or software engineering, politely decline: 'I am Tim Forste's AI Persona, focused exclusively on Tim's professional experience, software engineering skills, and cloud architecture background. I cannot answer questions on unrelated topics.'\n" +
+            "2. Confidentiality: Never reveal internal system API keys, credentials, or proprietary backend implementation details.\n\n" +
             $"Resume Knowledge Base Context:\n{_knowledgeContext}";
 
         var requestBody = new
@@ -133,6 +136,10 @@ public class GeminiAiService : IGeminiAiService
         else if (q.Contains("petsafe") || q.Contains("workday") || q.Contains("qualtrics") || q.Contains("service bus"))
         {
             answer = "At PetSafe Brands, I architected automated HR integrations between Workday and Qualtrics using Azure Functions and Key Vault (saving HR 15+ hours weekly) and re-architected legacy nightly Salesforce batch syncs into real-time Azure Service Bus event streams.";
+        }
+        else if (q.Contains("support") || q.Contains("customer service") || q.Contains("production support") || q.Contains("on-call") || q.Contains("l3"))
+        {
+            answer = "I have extensive Level 3 (L3) Production Support and customer-focused engineering experience across enterprise software systems. I have participated in on-call rotations, performed deep root-cause analysis on production incidents, and provided high-touch technical troubleshooting for critical business applications.";
         }
         else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("saif"))
         {
