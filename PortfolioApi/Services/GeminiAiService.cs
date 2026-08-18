@@ -141,6 +141,10 @@ public class GeminiAiService : IGeminiAiService
         {
             answer = "I have extensive Level 3 (L3) Production Support and customer-focused engineering experience across enterprise software systems. I have participated in on-call rotations, performed deep root-cause analysis on production incidents, and provided high-touch technical troubleshooting for critical business applications.";
         }
+        else if (q.Contains("accomplishment") || q.Contains("metric") || q.Contains("achievement") || q.Contains("impact") || q.Contains("stat") || q.Contains("top") || q.Contains("highlight"))
+        {
+            answer = "My top engineering accomplishments & metrics include: 1) Architected a GCP-hosted NestJS platform onboarding 7,000+ repair shops and processing 180,000 repairs (87,000 estimates) with 0 SLA impact; 2) Earning official recognition from Federal OSHA for regulatory data integrity at Saif Corporation; 3) Achieving 100% payment uptime with zero interrupted payments during KeyBank financial system integration; 4) Reducing SQL query report generation times by over 50% through SSMS query optimization; and 5) Saving HR 15+ hours weekly by automating Workday-Qualtrics event integrations.";
+        }
         else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("saif"))
         {
             answer = "I am a pragmatic technical leader with 12 years of experience. At Saif Corporation, I earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";

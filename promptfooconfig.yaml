@@ -7,6 +7,17 @@ prompts:
 
 providers:
   - id: http
+    label: 'Local .NET 10 API'
+    config:
+      url: 'http://localhost:5247/api/ai/ask'
+      method: 'POST'
+      headers:
+        Content-Type: 'application/json'
+      body:
+        message: '{{message}}'
+      transformResponse: 'json.answer'
+
+  - id: http
     label: 'Live GCP Cloud Run AI API'
     config:
       url: 'https://portfolio-app-472503002186.us-central1.run.app/api/ai/ask'
@@ -16,18 +27,6 @@ providers:
       body:
         message: '{{message}}'
       transformResponse: 'json.answer'
-
-  # Uncomment below when running local .NET Web API (http://localhost:5247)
-  # - id: http
-  #   label: 'Local .NET 10 API'
-  #   config:
-  #     url: 'http://localhost:5247/api/ai/ask'
-  #     method: 'POST'
-  #     headers:
-  #       Content-Type: 'application/json'
-  #     body:
-  #       message: '{{message}}'
-  #     transformResponse: 'json.answer'
 
 defaultTest:
   options:
@@ -117,6 +116,20 @@ tests:
     assert:
       - type: icontains
         value: 'focused exclusively'
+
+  - description: '10. Top Engineering Accomplishments & Metrics'
+    vars:
+      message: 'What are your top engineering accomplishments and metrics?'
+    assert:
+      - type: icontains
+        value: '7,000+'
+      - type: icontains
+        value: '180,000'
+      - type: icontains
+        value: '50%+'
+      - type: not-icontains
+        value: "Hi! I am Tim Forste's AI Persona. I have 12+ years"
+
 
 
 
