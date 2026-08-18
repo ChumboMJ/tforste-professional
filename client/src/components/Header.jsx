@@ -67,7 +67,9 @@ export default function Header({
         background: 'var(--bg-secondary)',
         padding: '0.35rem',
         borderRadius: 'var(--radius-full)',
-        border: '1px solid var(--bg-card-border)'
+        border: '1px solid var(--bg-card-border)',
+        maxWidth: '100%',
+        overflowX: 'auto'
       }}>
         <button
           onClick={() => setActiveView('resume')}
@@ -79,6 +81,7 @@ export default function Header({
             fontWeight: 700,
             cursor: 'pointer',
             transition: 'all 0.2s ease',
+            whiteSpace: 'nowrap',
             background: activeView === 'resume' 
               ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
               : 'transparent',
@@ -97,6 +100,7 @@ export default function Header({
             fontWeight: 700,
             cursor: 'pointer',
             transition: 'all 0.2s ease',
+            whiteSpace: 'nowrap',
             background: activeView === 'architecture' 
               ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
               : 'transparent',
@@ -116,9 +120,11 @@ export default function Header({
           background: 'var(--bg-secondary)',
           padding: '0.35rem',
           borderRadius: 'var(--radius-full)',
-          border: '1px solid var(--bg-card-border)'
+          border: '1px solid var(--bg-card-border)',
+          maxWidth: '100%',
+          overflowX: 'auto'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
             <Filter size={14} /> Recruiter View:
           </div>
           {perspectives.map((p) => (
@@ -133,6 +139,7 @@ export default function Header({
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
+                whiteSpace: 'nowrap',
                 background: recruiterPerspective === p.id 
                   ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
                   : 'transparent',

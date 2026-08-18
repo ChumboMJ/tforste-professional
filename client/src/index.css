@@ -147,6 +147,19 @@ body {
   border: 1px solid rgba(0, 242, 254, 0.25);
 }
 
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 /* Print Stylesheet for 1-Page Resume Export */
 @media print {
   body {
