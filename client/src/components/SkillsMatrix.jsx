@@ -83,18 +83,8 @@ export default function SkillsMatrix({ recruiterPerspective }) {
           }}>
             {skills.map((skill) => (
               <div key={skill.id} className="glass-panel" style={{ padding: '1.5rem', position: 'relative' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <div style={{ marginBottom: '0.75rem' }}>
                   <div style={{ fontWeight: 700, fontSize: '1.05rem' }}>{skill.name}</div>
-                  <div style={{
-                    padding: '0.2rem 0.6rem',
-                    borderRadius: 'var(--radius-full)',
-                    background: 'rgba(0, 242, 254, 0.1)',
-                    color: 'var(--accent-cyan)',
-                    fontSize: '0.8rem',
-                    fontWeight: 700
-                  }}>
-                    {skill.proficiencyPercent}%
-                  </div>
                 </div>
 
                 {/* Progress Bar */}
