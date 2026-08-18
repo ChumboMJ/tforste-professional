@@ -115,6 +115,17 @@ npm test
 npm run test:coverage
 ```
 
+### 3. Promptfoo AI Persona Evaluation Suite (GCP Gemini)
+Run automated evaluation assertions against the live or local AI Persona API:
+
+```powershell
+# Run Promptfoo evaluation suite
+npx promptfoo eval
+
+# Launch interactive web UI to inspect assertions & diffs
+npx promptfoo view
+```
+
 ---
 
 ## Git Branching Strategy

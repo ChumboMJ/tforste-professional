@@ -1,0 +1,85 @@
+# Promptfoo Evaluation Suite for Resume AI Persona
+# Run locally: npx promptfoo eval
+# View interactive web UI: npx promptfoo view
+
+prompts:
+  - '{{message}}'
+
+providers:
+  - id: http
+    label: 'Live GCP Cloud Run AI API'
+    config:
+      url: 'https://portfolio-app-472503002186.us-central1.run.app/api/ai/ask'
+      method: 'POST'
+      headers:
+        Content-Type: 'application/json'
+      body:
+        message: '{{message}}'
+      transformResponse: 'json.answer'
+
+  # Uncomment below when running local .NET Web API (http://localhost:5247)
+  # - id: http
+  #   label: 'Local .NET 10 API'
+  #   config:
+  #     url: 'http://localhost:5247/api/ai/ask'
+  #     method: 'POST'
+  #     headers:
+  #       Content-Type: 'application/json'
+  #     body:
+  #       message: '{{message}}'
+  #     transformResponse: 'json.answer'
+
+defaultTest:
+  options:
+    transform: output.trim()
+
+tests:
+  - description: '1. Location & Remote Work Query'
+    vars:
+      message: 'Where is Tim located?'
+    assert:
+      - type: contains
+        value: 'Independence, OR'
+      - type: icontains
+        value: 'remote'
+      - type: not-icontains
+        value: "Hi! I am Tim Forste's AI Persona. I have 12+ years"
+
+  - description: '2. Education & OIT Degree Decision Query'
+    vars:
+      message: 'Tell me about your education and degree at OIT'
+    assert:
+      - type: icontains
+        value: 'Oregon Institute of Technology'
+      - type: icontains
+        value: 'Software Engineering'
+
+  - description: '3. ORM Experience & Architectural Preferences'
+    vars:
+      message: 'What ORMs do you prefer to use?'
+    assert:
+      - type: icontains
+        value: 'Entity Framework'
+      - type: icontains
+        value: 'Dapper'
+
+  - description: '4. Contact Details & Recruiter Outreach'
+    vars:
+      message: 'How can recruiters contact Tim?'
+    assert:
+      - type: icontains
+        value: 'tforste@gmail.com'
+
+  - description: '5. Distributed Systems & Microservices Experience'
+    vars:
+      message: 'What is your experience with microservices?'
+    assert:
+      - type: icontains
+        value: 'microservices'
+
+  - description: '6. Team Leadership & Mentorship Style'
+    vars:
+      message: 'How do you approach team leadership and developer mentorship?'
+    assert:
+      - type: icontains
+        value: 'mentor'

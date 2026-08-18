@@ -67,7 +67,9 @@ export default function Header({
         background: 'var(--bg-secondary)',
         padding: '0.35rem',
         borderRadius: 'var(--radius-full)',
-        border: '1px solid var(--bg-card-border)'
+        border: '1px solid var(--bg-card-border)',
+        maxWidth: '100%',
+        overflowX: 'auto'
       }}>
         <button
           onClick={() => setActiveView('resume')}
@@ -79,6 +81,7 @@ export default function Header({
             fontWeight: 700,
             cursor: 'pointer',
             transition: 'all 0.2s ease',
+            whiteSpace: 'nowrap',
             background: activeView === 'resume' 
               ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
               : 'transparent',
@@ -97,6 +100,7 @@ export default function Header({
             fontWeight: 700,
             cursor: 'pointer',
             transition: 'all 0.2s ease',
+            whiteSpace: 'nowrap',
             background: activeView === 'architecture' 
               ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
               : 'transparent',
@@ -112,36 +116,68 @@ export default function Header({
         <div style={{
           display: 'flex',
           alignItems: 'center',
+          flexWrap: 'wrap',
           gap: '0.35rem',
           background: 'var(--bg-secondary)',
-          padding: '0.35rem',
-          borderRadius: 'var(--radius-full)',
-          border: '1px solid var(--bg-card-border)'
+          padding: '0.4rem 0.6rem',
+          borderRadius: '16px',
+          border: '1px solid var(--bg-card-border)',
+          maxWidth: '100%'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            <Filter size={14} /> Recruiter View:
+          {/* Row 1 Group: Filter Icon Label + All Profiles + Full Stack */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'nowrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.4rem', fontSize: '0.75rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', fontWeight: 600 }}>
+              <Filter size={14} /> Recruiter View:
+            </div>
+            {perspectives.slice(0, 2).map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setRecruiterPerspective(p.id)}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: 'none',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                  background: recruiterPerspective === p.id 
+                    ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+                    : 'transparent',
+                  color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
+                }}
+              >
+                {p.label}
+              </button>
+            ))}
           </div>
-          {perspectives.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setRecruiterPerspective(p.id)}
-              style={{
-                padding: '0.35rem 0.85rem',
-                borderRadius: 'var(--radius-full)',
-                border: 'none',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                background: recruiterPerspective === p.id 
-                  ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
-                  : 'transparent',
-                color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
-              }}
-            >
-              {p.label}
-            </button>
-          ))}
+
+          {/* Row 2 Group: Backend & APIs + Cloud & DevOps + AI & Data */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+            {perspectives.slice(2).map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setRecruiterPerspective(p.id)}
+                style={{
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: 'none',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                  background: recruiterPerspective === p.id 
+                    ? 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))' 
+                    : 'transparent',
+                  color: recruiterPerspective === p.id ? '#0a0e17' : 'var(--text-secondary)'
+                }}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

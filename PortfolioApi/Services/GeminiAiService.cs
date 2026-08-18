@@ -116,11 +116,15 @@ public class GeminiAiService : IGeminiAiService
         }
         else if (q.Contains("orm") || q.Contains("dapper") || q.Contains("ef") || q.Contains("entity framework") || q.Contains("nhibernate"))
         {
-            answer = "I have extensive ORM experience: I used NHibernate as the primary ORM at Saif Corporation, Entity Framework at PetSafe Brands and Entegral, and ADO.NET when needed. I am also a strong proponent of lightweight ORMs like Dapper, which I successfully introduced to engineering leadership at PetSafe.";
+            answer = "I have extensive ORM experience: I prefer using EF Core / Entity Framework for core domain models and lightweight ORMs like Dapper for high-performance query execution, alongside NHibernate for legacy enterprise codebases.";
+        }
+        else if (q.Contains("microservice") || q.Contains("distributed") || q.Contains("event-driven"))
+        {
+            answer = "I have 7 years of distributed systems and microservices development experience. I have architected event-driven microservices using Azure Service Bus and GCP Cloud Run, scaling applications for high throughput and zero SLA impact.";
         }
         else if (q.Contains("c#") || q.Contains(".net") || q.Contains("backend") || q.Contains("asp.net"))
         {
-            answer = "I have 11+ years of experience specializing in C#, .NET Core, and ASP.NET. I have led legacy modernization efforts (upgrading ASP.NET to .NET Core), architected event-driven microservices using Azure Service Bus, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
+            answer = "I have 12 years of experience specializing in C#, .NET Core, and ASP.NET. I have led legacy modernization efforts (upgrading ASP.NET to .NET Core), architected event-driven microservices using Azure Service Bus, and integrated enterprise finance systems with KeyBank achieving 100% payment uptime.";
         }
         else if (q.Contains("gcp") || q.Contains("azure") || q.Contains("cloud") || q.Contains("gemini") || q.Contains("docker"))
         {
@@ -130,9 +134,9 @@ public class GeminiAiService : IGeminiAiService
         {
             answer = "At PetSafe Brands, I architected automated HR integrations between Workday and Qualtrics using Azure Functions and Key Vault (saving HR 15+ hours weekly) and re-architected legacy nightly Salesforce batch syncs into real-time Azure Service Bus event streams.";
         }
-        else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("experience") || q.Contains("saif"))
+        else if (q.Contains("mentorship") || q.Contains("leadership") || q.Contains("saif"))
         {
-            answer = "I am a pragmatic technical leader with 12+ years of experience. At Saif Corporation, I earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";
+            answer = "I am a pragmatic technical leader with 12 years of experience. At Saif Corporation, I earned official recognition from Federal OSHA for regulatory data integrity, mentored 4 developers, and led organizational Tech Talks for 12-20 engineers.";
         }
         else
         {
