@@ -32,7 +32,7 @@ defaultTest:
   options:
     transform: output.trim()
     provider:
-      id: google:gemini-3.6-flash
+      id: google:gemini-3.5-flash-lite
       config:
         apiKey: ${GEMINI_API_KEY}
   assert:
