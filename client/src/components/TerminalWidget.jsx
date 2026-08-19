@@ -160,7 +160,14 @@ export default function TerminalWidget({ isOpen, onClose }) {
               ) : h.type === 'error' ? (
                 <div style={{ color: '#ff5555' }}>{h.output}</div>
               ) : (
-                <div style={{ color: 'var(--text-primary)', opacity: 0.95 }}>{h.output}</div>
+                <div style={{ color: 'var(--text-primary)', opacity: 0.95 }}>
+                  {h.output?.split(/(\*\*.*?\*\*)/g).map((part, pIdx) => {
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                      return <strong key={pIdx} style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{part.slice(2, -2)}</strong>;
+                    }
+                    return part;
+                  })}
+                </div>
               )}
             </div>
           ))}
