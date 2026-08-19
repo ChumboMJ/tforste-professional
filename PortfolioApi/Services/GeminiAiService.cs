@@ -77,7 +77,7 @@ public class GeminiAiService : IGeminiAiService
         var requestJson = JsonSerializer.Serialize(requestBody);
         var content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={apiKey}";
+        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={apiKey}";
         var response = await _httpClient.PostAsync(endpoint, content);
 
         response.EnsureSuccessStatusCode();
