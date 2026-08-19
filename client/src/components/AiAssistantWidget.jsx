@@ -61,6 +61,45 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
     }
   };
 
+  const renderFormattedText = (text) => {
+    if (!text) return null;
+
+    const lines = text.split('\n');
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', whiteSpace: 'pre-wrap' }}>
+        {lines.map((line, idx) => {
+          const trimmed = line.trim();
+          if (!trimmed) return <div key={idx} style={{ height: '0.2rem' }} />;
+
+          const isBullet = /^[*\-•]\s+/.test(trimmed) || /^\d+[\.\)]\s+/.test(trimmed);
+          const lineContent = trimmed.replace(/^[*\-•]\s+/, '').replace(/^\d+[\.\)]\s+/, '');
+
+          const parseBold = (content) => {
+            const parts = content.split(/(\*\*.*?\*\*)/g);
+            return parts.map((part, i) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong key={i} style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{part.slice(2, -2)}</strong>;
+              }
+              return part;
+            });
+          };
+
+          if (isBullet) {
+            return (
+              <div key={idx} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start', paddingLeft: '0.4rem', marginTop: '0.2rem' }}>
+                <span style={{ color: 'var(--accent-cyan)', fontWeight: 800, lineHeight: 1.4 }}>•</span>
+                <div style={{ flex: 1 }}>{parseBold(lineContent)}</div>
+              </div>
+            );
+          }
+
+          return <div key={idx}>{parseBold(trimmed)}</div>;
+        })}
+      </div>
+    );
+  };
+
   return (
     <div style={{
       position: 'fixed',
@@ -75,8 +114,8 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
     }}>
       <div className="glass-panel" style={{
         width: '100%',
-        maxWidth: '650px',
-        height: '650px',
+        maxWidth: '700px',
+        height: '620px',
         maxHeight: '90vh',
         display: 'flex',
         flexDirection: 'column',
@@ -84,39 +123,31 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)',
         border: '1px solid var(--accent-indigo)'
       }}>
-        {/* Header */}
+        {/* Header Bar */}
         <div style={{
           padding: '1rem 1.25rem',
-          background: 'linear-gradient(135deg, rgba(111, 76, 255, 0.2), rgba(0, 242, 254, 0.1))',
+          background: 'var(--bg-secondary)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           borderBottom: '1px solid var(--bg-card-border)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#0a0e17'
-            }}>
-              <Bot size={22} />
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <Bot size={22} color="var(--accent-cyan)" />
             <div>
-              <div style={{ fontWeight: 700, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                Tim Forste AI Assistant <Sparkles size={14} color="var(--accent-cyan)" />
+              <div style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                Tim's AI Resume Assistant <Sparkles size={14} color="var(--accent-cyan)" />
               </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                Powered by GCP Gemini & .NET 10 (Zero-Hallucination Grounded Engine)
+                Powered by GCP Gemini 3.5 Flash • Grounded Career RAG Engine
               </div>
             </div>
           </div>
 
-          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>
+          <button 
+            onClick={onClose}
+            style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+          >
             <X size={20} />
           </button>
         </div>
@@ -138,7 +169,7 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
               alignItems: m.sender === 'user' ? 'flex-end' : 'flex-start'
             }}>
               <div style={{
-                maxWidth: '85%',
+                maxWidth: '90%',
                 padding: '0.85rem 1.1rem',
                 borderRadius: '14px',
                 fontSize: '0.92rem',
@@ -151,7 +182,7 @@ export default function AiAssistantWidget({ isOpen, onClose }) {
                 border: m.sender === 'ai' ? '1px solid var(--bg-card-border)' : 'none',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
               }}>
-                {m.text}
+                {m.sender === 'ai' ? renderFormattedText(m.text) : m.text}
               </div>
 
               {m.sender === 'ai' && m.modelUsed && (
