@@ -70,14 +70,14 @@ public class GeminiAiService : IGeminiAiService
             generationConfig = new
             {
                 temperature = 0.2,
-                maxOutputTokens = 800
+                maxOutputTokens = 450
             }
         };
 
         var requestJson = JsonSerializer.Serialize(requestBody);
         var content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={apiKey}";
+        var endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key={apiKey}";
         var response = await _httpClient.PostAsync(endpoint, content);
 
         response.EnsureSuccessStatusCode();
