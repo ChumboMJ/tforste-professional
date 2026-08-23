@@ -55,8 +55,12 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
     const pulses = [];
 
     const render = () => {
-      const width = parent.clientWidth;
-      const height = parent.clientHeight;
+      const width = parent ? parent.clientWidth : window.innerWidth;
+      const height = parent ? parent.clientHeight : 500;
+
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const labelColor = isLight ? 'rgba(15, 23, 42, 0.88)' : 'rgba(240, 246, 252, 0.85)';
+      const strokeColor = isLight ? 'rgba(79, 70, 229, 0.22)' : 'rgba(0, 242, 254, 0.15)';
 
       ctx.clearRect(0, 0, width, height);
 
@@ -66,7 +70,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
         const n2 = nodes[Math.floor(Math.random() * nodes.length)];
         const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
         if (n1 !== n2 && dist < 140) {
-          pulses.push({ from: n1, to: n2, progress: 0, speed: 0.015 + Math.random() * 0.02, color: n1.color });
+          pulses.push({ from: n1, to: n2, progress: 0, speed: 0.015 + Math.random() * 0.02, color: isLight ? '#4f46e5' : n1.color });
         }
       }
 
@@ -80,8 +84,8 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 130) {
-            const alpha = (1 - dist / 130) * 0.15;
-            ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`;
+            const alpha = (1 - dist / 130) * (isLight ? 0.25 : 0.15);
+            ctx.strokeStyle = strokeColor;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
@@ -105,7 +109,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
 
         ctx.fillStyle = p.color;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 6;
         ctx.beginPath();
         ctx.arc(px, py, 2.5, 0, Math.PI * 2);
         ctx.fill();
@@ -134,18 +138,22 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
           n.radius = n.baseRadius;
         }
 
-        ctx.fillStyle = n.color;
-        ctx.shadowColor = n.color;
-        ctx.shadowBlur = n.label ? 10 : 4;
+        const nodeColor = isLight 
+          ? (n.color === '#00f2fe' ? '#0284c7' : n.color === '#6f4cff' ? '#4f46e5' : '#059669')
+          : n.color;
+
+        ctx.fillStyle = nodeColor;
+        ctx.shadowColor = nodeColor;
+        ctx.shadowBlur = n.label ? 8 : 3;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Render tech badge label for key nodes
+        // Render tech badge label for key nodes with dynamic contrast
         if (n.label) {
           ctx.font = '600 11px system-ui, sans-serif';
-          ctx.fillStyle = 'rgba(240, 246, 252, 0.75)';
+          ctx.fillStyle = labelColor;
           ctx.fillText(n.label, n.x + 8, n.y + 4);
         }
       });
