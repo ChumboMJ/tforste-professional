@@ -30,16 +30,19 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
-      canvas.width = parent.clientWidth * dpr;
-      canvas.height = parent.clientHeight * dpr;
-      ctx.scale(dpr, dpr);
+      const w = parent ? parent.clientWidth : window.innerWidth;
+      const h = parent ? parent.clientHeight : 500;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
+    window.addEventListener('resize', resize);
     const techLabels = ['.NET 10', 'C#', 'GCP', 'Azure', 'Gemini AI', 'Kubernetes', 'Docker', 'CI/CD', 'Automated Testing', 'React'];
     
     const nodes = Array.from({ length: 28 }, (_, i) => ({
-      x: Math.random() * parent.clientWidth,
-      y: Math.random() * parent.clientHeight,
+      x: Math.random() * (parent ? parent.clientWidth : window.innerWidth),
+      y: Math.random() * (parent ? parent.clientHeight : 500),
       vx: (Math.random() - 0.5) * 0.7,
       vy: (Math.random() - 0.5) * 0.7,
       baseRadius: i < techLabels.length ? 4 : 2.5,
@@ -160,7 +163,16 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
     };
   }, []);
 
-  if (!profile) return null;
+  const p = profile || {
+    availabilityStatus: "⚡ Available for Senior Roles",
+    bio: "Senior Software Engineer & Hybrid-Cloud Architect with 12+ years of experience specializing in C#, .NET 10, GCP, Azure, event-driven microservices, and AI integrations.",
+    metrics: {
+      yearsOfExperience: "12+ Years",
+      fullyRemoteDelivery: "5+ Years",
+      sqlQuerySpeedLift: "50%+",
+      distributedSystemsExperience: "7 Years"
+    }
+  };
 
   return (
     <section style={{ position: 'relative', padding: '3.5rem 0 2rem 0', overflow: 'hidden' }}>
@@ -182,7 +194,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
           
           {/* Status Badge */}
           <div className="badge" style={{ marginBottom: '1.25rem', padding: '0.4rem 1.1rem', fontSize: '0.85rem' }}>
-            {profile.availabilityStatus}
+            {p.availabilityStatus}
           </div>
 
           {/* Headline */}
@@ -204,7 +216,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             maxWidth: '720px',
             margin: '0 auto 2rem auto'
           }}>
-            {profile.bio}
+            {p.bio}
           </p>
 
           {/* Call to Actions */}
@@ -237,7 +249,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}><Cpu size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.yearsOfExperience}
+                {p.metrics?.yearsOfExperience}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Software Engineering</div>
             </div>
@@ -245,7 +257,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-indigo)', marginBottom: '0.5rem' }}><Globe size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.fullyRemoteDelivery}
+                {p.metrics?.fullyRemoteDelivery}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Remote Delivery (3 Time Zones)</div>
             </div>
@@ -253,7 +265,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><Database size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.sqlQuerySpeedLift}
+                {p.metrics?.sqlQuerySpeedLift}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>SQL Query Speed Lift</div>
             </div>
@@ -261,7 +273,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-amber)', marginBottom: '0.5rem' }}><Cloud size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.distributedSystemsExperience}
+                {p.metrics?.distributedSystemsExperience}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Distributed Microservices</div>
             </div>
