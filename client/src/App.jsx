@@ -44,6 +44,7 @@ export default function App() {
         toggleTheme={toggleTheme}
         onOpenAiChat={() => setIsAiChatOpen(true)}
         onOpenTerminal={() => setIsTerminalOpen(true)}
+        onOpenContact={() => setIsContactOpen(true)}
       />
 
       <main>

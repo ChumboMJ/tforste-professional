@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Bot, Printer, Sun, Moon, Filter, Sparkles } from 'lucide-react';
+import { Terminal, Bot, Mail, Sun, Moon, Filter, Sparkles } from 'lucide-react';
 import profilePic from '../assets/profile.png';
 
 export default function Header({ 
@@ -10,7 +10,8 @@ export default function Header({
   theme, 
   toggleTheme, 
   onOpenAiChat, 
-  onOpenTerminal 
+  onOpenTerminal,
+  onOpenContact
 }) {
   const perspectives = [
     { id: 'All', label: 'All Profiles' },
@@ -202,12 +203,12 @@ export default function Header({
         </button>
 
         <button 
-          onClick={() => window.print()}
+          onClick={onOpenContact}
           className="btn btn-secondary"
-          style={{ padding: '0.5rem 0.75rem' }}
-          title="Export / Print PDF Resume"
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.85rem' }}
+          title="Contact Tim to Request PDF Resume"
         >
-          <Printer size={16} />
+          <Mail size={16} /> <span className="hide-mobile">Contact</span>
         </button>
 
         <button 
