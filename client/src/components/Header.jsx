@@ -112,19 +112,22 @@ export default function Header({
         </button>
       </div>
 
-      {/* Recruiter Perspective Filter Pills (Only visible on Interactive Resume view) */}
-      {activeView === 'resume' && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '0.35rem',
-          background: 'var(--bg-secondary)',
-          padding: '0.4rem 0.6rem',
-          borderRadius: '16px',
-          border: '1px solid var(--bg-card-border)',
-          maxWidth: '100%'
-        }}>
+      {/* Recruiter Perspective Filter Pills (Always reserves layout space so navigation tabs never shift) */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '0.35rem',
+        background: 'var(--bg-secondary)',
+        padding: '0.4rem 0.6rem',
+        borderRadius: '16px',
+        border: '1px solid var(--bg-card-border)',
+        maxWidth: '100%',
+        visibility: activeView === 'resume' ? 'visible' : 'hidden',
+        opacity: activeView === 'resume' ? 1 : 0,
+        pointerEvents: activeView === 'resume' ? 'auto' : 'none',
+        transition: 'opacity 0.2s ease, visibility 0.2s ease'
+      }}>
           {/* Row 1 Group: Filter Icon Label + All Profiles + Full Stack */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'nowrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0 0.4rem', fontSize: '0.75rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', fontWeight: 600 }}>
@@ -180,7 +183,6 @@ export default function Header({
             ))}
           </div>
         </div>
-      )}
 
       {/* Action Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
