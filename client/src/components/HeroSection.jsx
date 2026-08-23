@@ -35,9 +35,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
       ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener('resize', resize);
-
-    const techLabels = ['.NET 10', 'GCP Cloud Run', 'Azure Service Bus', 'Gemini AI', 'WebSockets', 'EF Core', 'Docker', 'xUnit'];
+    const techLabels = ['.NET 10', 'C#', 'GCP', 'Azure', 'Gemini AI', 'Kubernetes', 'Docker', 'CI/CD', 'Automated Testing', 'React'];
     
     const nodes = Array.from({ length: 28 }, (_, i) => ({
       x: Math.random() * parent.clientWidth,
