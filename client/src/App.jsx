@@ -68,19 +68,17 @@ export default function App() {
       />
 
       <main>
+        <HeroSection
+          profile={profile}
+          onOpenAiChat={() => setIsAiChatOpen(true)}
+          onOpenTerminal={() => setIsTerminalOpen(true)}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+
         {activeView === 'resume' ? (
           <>
-            <HeroSection
-              profile={profile}
-              onOpenAiChat={() => setIsAiChatOpen(true)}
-              onOpenTerminal={() => setIsTerminalOpen(true)}
-              onOpenContact={() => setIsContactOpen(true)}
-            />
-
             <SkillsMatrix recruiterPerspective={recruiterPerspective} />
-            
             <ExperienceTimeline recruiterPerspective={recruiterPerspective} />
-
             <ProjectsShowcase />
           </>
         ) : (
