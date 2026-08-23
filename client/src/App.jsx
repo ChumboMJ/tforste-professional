@@ -27,6 +27,26 @@ export default function App() {
       .catch((err) => console.error('Error fetching profile:', err));
   }, []);
 
+  const handleViewChange = (newView) => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        setActiveView(newView);
+      });
+    } else {
+      setActiveView(newView);
+    }
+  };
+
+  const handlePerspectiveChange = (newPerspective) => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        setRecruiterPerspective(newPerspective);
+      });
+    } else {
+      setRecruiterPerspective(newPerspective);
+    }
+  };
+
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
@@ -37,9 +57,9 @@ export default function App() {
     <div className="app-root">
       <Header
         activeView={activeView}
-        setActiveView={setActiveView}
+        setActiveView={handleViewChange}
         recruiterPerspective={recruiterPerspective}
-        setRecruiterPerspective={setRecruiterPerspective}
+        setRecruiterPerspective={handlePerspectiveChange}
         theme={theme}
         toggleTheme={toggleTheme}
         onOpenAiChat={() => setIsAiChatOpen(true)}
