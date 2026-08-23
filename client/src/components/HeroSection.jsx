@@ -4,56 +4,157 @@ import { Terminal, Bot, Mail, Cpu, Globe, Database, Cloud } from 'lucide-react';
 export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onOpenContact }) {
   const canvasRef = useRef(null);
 
-  // Background particle mesh animation
+  // Dynamic Cloud Microservices Mesh Animation with interactive mouse tracking & tech nodes
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
+    const mouse = { x: -1000, y: -1000, radius: 180 };
+
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    const parent = canvas.parentElement;
+    parent.addEventListener('mousemove', handleMouseMove);
+    parent.addEventListener('mouseleave', handleMouseLeave);
+
     const resize = () => {
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const w = parent ? parent.clientWidth : window.innerWidth;
+      const h = parent ? parent.clientHeight : 500;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener('resize', resize);
-
-    const particles = Array.from({ length: 45 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6,
-      radius: Math.random() * 2 + 1,
+    const techLabels = ['.NET 10', 'C#', 'GCP', 'Azure', 'Gemini AI', 'Kubernetes', 'Docker', 'CI/CD', 'Automated Testing', 'React'];
+    
+    const nodes = Array.from({ length: 28 }, (_, i) => ({
+      x: Math.random() * (parent ? parent.clientWidth : window.innerWidth),
+      y: Math.random() * (parent ? parent.clientHeight : 500),
+      vx: (Math.random() - 0.5) * 0.7,
+      vy: (Math.random() - 0.5) * 0.7,
+      baseRadius: i < techLabels.length ? 4 : 2.5,
+      radius: i < techLabels.length ? 4 : 2.5,
+      label: techLabels[i] || null,
+      color: i % 3 === 0 ? '#00f2fe' : i % 3 === 1 ? '#6f4cff' : '#10b981'
     }));
 
+    // Data pulses traveling along connections
+    const pulses = [];
+
     const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(0, 242, 254, 0.25)';
-      ctx.strokeStyle = 'rgba(111, 76, 255, 0.08)';
+      const width = parent ? parent.clientWidth : window.innerWidth;
+      const height = parent ? parent.clientHeight : 500;
 
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const labelColor = isLight ? 'rgba(15, 23, 42, 0.88)' : 'rgba(240, 246, 252, 0.85)';
+      const strokeColor = isLight ? 'rgba(79, 70, 229, 0.22)' : 'rgba(0, 242, 254, 0.15)';
 
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.clearRect(0, 0, width, height);
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
+      // Randomly spawn pulses between nearby nodes
+      if (Math.random() < 0.08 && pulses.length < 12) {
+        const n1 = nodes[Math.floor(Math.random() * nodes.length)];
+        const n2 = nodes[Math.floor(Math.random() * nodes.length)];
+        const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+        if (n1 !== n2 && dist < 140) {
+          pulses.push({ from: n1, to: n2, progress: 0, speed: 0.015 + Math.random() * 0.02, color: isLight ? '#4f46e5' : n1.color });
+        }
+      }
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
+      // Draw connection lines
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const n1 = nodes[i];
+          const n2 = nodes[j];
+          const dx = n1.x - n2.x;
+          const dy = n1.y - n2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 110) {
+          if (dist < 130) {
+            const alpha = (1 - dist / 130) * (isLight ? 0.25 : 0.15);
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
             ctx.stroke();
           }
+        }
+      }
+
+      // Update & draw pulses
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i];
+        p.progress += p.speed;
+        if (p.progress >= 1) {
+          pulses.splice(i, 1);
+          continue;
+        }
+
+        const px = p.from.x + (p.to.x - p.from.x) * p.progress;
+        const py = p.from.y + (p.to.y - p.from.y) * p.progress;
+
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      // Update & draw nodes
+      nodes.forEach((n) => {
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if (n.x < 0 || n.x > width) n.vx *= -1;
+        if (n.y < 0 || n.y > height) n.vy *= -1;
+
+        // Mouse attraction/repulsion
+        const mdx = mouse.x - n.x;
+        const mdy = mouse.y - n.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        
+        if (mdist < mouse.radius) {
+          const force = (mouse.radius - mdist) / mouse.radius;
+          n.x -= (mdx / mdist) * force * 2;
+          n.y -= (mdy / mdist) * force * 2;
+          n.radius = n.baseRadius + force * 2;
+        } else {
+          n.radius = n.baseRadius;
+        }
+
+        const nodeColor = isLight 
+          ? (n.color === '#00f2fe' ? '#0284c7' : n.color === '#6f4cff' ? '#4f46e5' : '#059669')
+          : n.color;
+
+        ctx.fillStyle = nodeColor;
+        ctx.shadowColor = nodeColor;
+        ctx.shadowBlur = n.label ? 8 : 3;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Render tech badge label for key nodes with dynamic contrast
+        if (n.label) {
+          ctx.font = '600 11px system-ui, sans-serif';
+          ctx.fillStyle = labelColor;
+          ctx.fillText(n.label, n.x + 8, n.y + 4);
         }
       });
 
@@ -63,12 +164,23 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
     render();
 
     return () => {
+      parent.removeEventListener('mousemove', handleMouseMove);
+      parent.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  if (!profile) return null;
+  const p = profile || {
+    availabilityStatus: "⚡ Available for Senior Roles",
+    bio: "Senior Software Engineer & Hybrid-Cloud Architect with 12+ years of experience specializing in C#, .NET 10, GCP, Azure, event-driven microservices, and AI integrations.",
+    metrics: {
+      yearsOfExperience: "12+ Years",
+      fullyRemoteDelivery: "5+ Years",
+      sqlQuerySpeedLift: "50%+",
+      distributedSystemsExperience: "7 Years"
+    }
+  };
 
   return (
     <section style={{ position: 'relative', padding: '3.5rem 0 2rem 0', overflow: 'hidden' }}>
@@ -90,7 +202,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
           
           {/* Status Badge */}
           <div className="badge" style={{ marginBottom: '1.25rem', padding: '0.4rem 1.1rem', fontSize: '0.85rem' }}>
-            {profile.availabilityStatus}
+            {p.availabilityStatus}
           </div>
 
           {/* Headline */}
@@ -112,7 +224,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             maxWidth: '720px',
             margin: '0 auto 2rem auto'
           }}>
-            {profile.bio}
+            {p.bio}
           </p>
 
           {/* Call to Actions */}
@@ -145,7 +257,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}><Cpu size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.yearsOfExperience}
+                {p.metrics?.yearsOfExperience}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Software Engineering</div>
             </div>
@@ -153,7 +265,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-indigo)', marginBottom: '0.5rem' }}><Globe size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.fullyRemoteDelivery}
+                {p.metrics?.fullyRemoteDelivery}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Remote Delivery (3 Time Zones)</div>
             </div>
@@ -161,7 +273,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-emerald)', marginBottom: '0.5rem' }}><Database size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.sqlQuerySpeedLift}
+                {p.metrics?.sqlQuerySpeedLift}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>SQL Query Speed Lift</div>
             </div>
@@ -169,7 +281,7 @@ export default function HeroSection({ profile, onOpenAiChat, onOpenTerminal, onO
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <div style={{ color: 'var(--accent-amber)', marginBottom: '0.5rem' }}><Cloud size={28} /></div>
               <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">
-                {profile.metrics?.distributedSystemsExperience}
+                {p.metrics?.distributedSystemsExperience}
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Distributed Microservices</div>
             </div>
