@@ -123,7 +123,7 @@ public class PortfolioService : IPortfolioService
             ),
 
             "tailor" => new TerminalResponse(
-                "✨ ATS Resume Tailor & Skill Gap Analyzer loaded!\nDirecting to hidden route #resume-tailor to paste job descriptions and analyze skill gaps...",
+                "✨ ATS Resume Tailor & Skill Gap Analyzer loaded!\nDirecting to hidden route /resume-tailor to paste job descriptions and analyze skill gaps...",
                 "text"
             ),
 

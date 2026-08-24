@@ -12,11 +12,21 @@ import ContactModal from './components/ContactModal';
 import PrintResumeView from './components/PrintResumeView';
 import { Terminal, Bot, Mail, Sparkles } from 'lucide-react';
 
+const getViewFromLocation = () => {
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  if (path === '/resume-tailor' || path.startsWith('/resume-tailor') || hash === '#resume-tailor') {
+    return 'resume-tailor';
+  }
+  if (path === '/architecture' || hash === '#architecture') {
+    return 'architecture';
+  }
+  return 'resume';
+};
+
 export default function App() {
   const [profile, setProfile] = useState(null);
-  const [activeView, setActiveView] = useState(() => {
-    return window.location.hash === '#resume-tailor' ? 'resume-tailor' : 'resume';
-  }); // 'resume' | 'architecture' | 'resume-tailor'
+  const [activeView, setActiveView] = useState(getViewFromLocation);
   const [recruiterPerspective, setRecruiterPerspective] = useState('All');
   const [theme, setTheme] = useState('dark');
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -29,21 +39,28 @@ export default function App() {
       .then((data) => setProfile(data))
       .catch((err) => console.error('Error fetching profile:', err));
 
-    const handleHashChange = () => {
-      if (window.location.hash === '#resume-tailor') {
-        setActiveView('resume-tailor');
-      }
+    const handleLocationChange = () => {
+      setActiveView(getViewFromLocation());
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const handleViewChange = (newView) => {
+    let targetPath = '/';
     if (newView === 'resume-tailor') {
-      window.location.hash = 'resume-tailor';
-    } else if (window.location.hash === '#resume-tailor') {
-      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+      targetPath = '/resume-tailor';
+    } else if (newView === 'architecture') {
+      targetPath = '/architecture';
+    }
+
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
     }
 
     if (document.startViewTransition) {
