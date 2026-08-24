@@ -110,6 +110,25 @@ export default function Header({
         >
           ⚙️ System Architecture
         </button>
+        {activeView === 'resume-tailor' && (
+          <button
+            onClick={() => setActiveView('resume-tailor')}
+            style={{
+              padding: '0.4rem 1rem',
+              borderRadius: 'var(--radius-full)',
+              border: 'none',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
+              background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
+              color: '#0a0e17'
+            }}
+          >
+            ✨ ATS Resume Tailor
+          </button>
+        )}
       </div>
 
       {/* Recruiter Perspective Filter Pills (Always reserves layout space so navigation tabs never shift) */}
