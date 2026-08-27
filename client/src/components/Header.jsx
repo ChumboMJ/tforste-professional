@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Bot, Mail, Sun, Moon, Filter, Sparkles } from 'lucide-react';
+import { Terminal, Bot, Mail, Sun, Moon, Filter, Sparkles, Github } from 'lucide-react';
 import profilePic from '../assets/profile.png';
 
 export default function Header({ 
@@ -205,6 +205,17 @@ export default function Header({
 
       {/* Action Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <a 
+          href="https://github.com/ChumboMJ/tforste-professional/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="btn btn-secondary"
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+          title="View GitHub Repository & Source Code"
+        >
+          <Github size={16} /> <span className="hide-mobile">GitHub</span>
+        </a>
+
         <button 
           onClick={onOpenTerminal}
           className="btn btn-secondary"
