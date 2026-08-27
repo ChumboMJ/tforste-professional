@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Cpu, Server, Cloud, ShieldCheck, Terminal, GitBranch, Cpu as Chip, Layers, CheckCircle2, Sparkles, Box, ArrowRight } from 'lucide-react';
 import ArchitectureDiagramExact from './ArchitectureDiagramExact';
+import MicroserviceMeshCanvas from './MicroserviceMeshCanvas';
 
 export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -82,10 +83,10 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
 
   return (
     <div style={{ padding: '2rem 0 4rem 0' }}>
-      <div className="container">
-        
-        {/* Header Title */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+      {/* Header Title with Constellation Canvas Background */}
+      <section style={{ position: 'relative', padding: '2.5rem 0 2rem 0', marginBottom: '2rem', overflow: 'hidden' }}>
+        <MicroserviceMeshCanvas />
+        <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <div className="badge" style={{ marginBottom: '0.6rem', padding: '0.4rem 1rem' }}>
             <Layers size={14} /> Engineering Case Study
           </div>
@@ -96,6 +97,9 @@ export default function ArchitecturePage({ onOpenAiChat, onOpenTerminal }) {
             An in-depth breakdown of how this application was architected, containerized, and deployed using C# .NET 10, GCP Gemini AI Grounding, and React 19.
           </p>
         </div>
+      </section>
+
+      <div className="container">
 
         {/* System Architecture Visual Flow - GCP AI Assistant Diagram */}
         <div className="glass-panel" style={{ padding: '2rem', marginBottom: '3rem', border: '1px solid var(--accent-cyan)' }}>

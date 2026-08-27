@@ -115,9 +115,15 @@ public class PortfolioService : IPortfolioService
                 "  exp / experience  - Show career history & SLA track record\n" +
                 "  contact           - Display developer contact info\n" +
                 "  ask <question>    - Query GCP Gemini AI trained on my resume\n" +
+                "  tailor            - Launch ATS Resume Tailor & Skill Gap Analyzer\n" +
                 "  clear             - Clear terminal display screen\n" +
                 "  whoami            - Display active user session profile\n" +
                 "  cat resume.json   - Output full raw JSON resume payload",
+                "text"
+            ),
+
+            "tailor" => new TerminalResponse(
+                "✨ ATS Resume Tailor & Skill Gap Analyzer loaded!\nDirecting to hidden route /resume-tailor to paste job descriptions and analyze skill gaps...",
                 "text"
             ),
 

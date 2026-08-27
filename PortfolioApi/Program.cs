@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IGeminiAiService, GeminiAiService>();
 builder.Services.AddSingleton<IPortfolioService, PortfolioService>();
+builder.Services.AddSingleton<IResumeTailorService, ResumeTailorService>();
 
 // Enable CORS for React frontend (Vite default ports 5173, 3000)
 builder.Services.AddCors(options =>
@@ -82,6 +83,20 @@ api.MapPost("/ai/ask", async (IGeminiAiService aiService, ILogger<Program> logge
     var response = await aiService.AskAsync(request);
     return Results.Ok(response);
 }).WithName("AskAiAssistant");
+
+api.MapPost("/resume-tailor/analyze", async (IResumeTailorService tailorService, ILogger<Program> logger, AnalyzeJobDescriptionRequest request) =>
+{
+    logger.LogInformation("Analyzing Job Description skill gaps for position: {JobTitle} @ {Company}", request.JobTitle, request.Company);
+    var result = await tailorService.AnalyzeSkillGapsAsync(request);
+    return Results.Ok(result);
+}).WithName("AnalyzeSkillGaps");
+
+api.MapPost("/resume-tailor/generate", async (IResumeTailorService tailorService, ILogger<Program> logger, GenerateResumeRequest request) =>
+{
+    logger.LogInformation("Generating tailored ATS Resume for position: {JobTitle} @ {Company}", request.JobTitle, request.Company);
+    var result = await tailorService.GenerateAtsResumeAsync(request);
+    return Results.Ok(result);
+}).WithName("GenerateAtsResume");
 
 // Fallback to index.html for SPA routing
 app.MapFallbackToFile("index.html");

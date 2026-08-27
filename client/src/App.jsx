@@ -5,15 +5,28 @@ import SkillsMatrix from './components/SkillsMatrix';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import ArchitecturePage from './components/ArchitecturePage';
+import ResumeTailorContainer from './components/ResumeTailor/ResumeTailorContainer';
 import TerminalWidget from './components/TerminalWidget';
 import AiAssistantWidget from './components/AiAssistantWidget';
 import ContactModal from './components/ContactModal';
 import PrintResumeView from './components/PrintResumeView';
-import { Terminal, Bot, Heart, Github, Linkedin, Mail } from 'lucide-react';
+import { Terminal, Bot, Mail, Sparkles } from 'lucide-react';
+
+const getViewFromLocation = () => {
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  if (path === '/resume-tailor' || path.startsWith('/resume-tailor') || hash === '#resume-tailor') {
+    return 'resume-tailor';
+  }
+  if (path === '/architecture' || hash === '#architecture') {
+    return 'architecture';
+  }
+  return 'resume';
+};
 
 export default function App() {
   const [profile, setProfile] = useState(null);
-  const [activeView, setActiveView] = useState('resume'); // 'resume' | 'architecture'
+  const [activeView, setActiveView] = useState(getViewFromLocation);
   const [recruiterPerspective, setRecruiterPerspective] = useState('All');
   const [theme, setTheme] = useState('dark');
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -25,9 +38,31 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => setProfile(data))
       .catch((err) => console.error('Error fetching profile:', err));
+
+    const handleLocationChange = () => {
+      setActiveView(getViewFromLocation());
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const handleViewChange = (newView) => {
+    let targetPath = '/';
+    if (newView === 'resume-tailor') {
+      targetPath = '/resume-tailor';
+    } else if (newView === 'architecture') {
+      targetPath = '/architecture';
+    }
+
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
+    }
+
     if (document.startViewTransition) {
       document.startViewTransition(() => {
         setActiveView(newView);
@@ -80,11 +115,13 @@ export default function App() {
             <ExperienceTimeline recruiterPerspective={recruiterPerspective} />
             <ProjectsShowcase />
           </>
-        ) : (
+        ) : activeView === 'architecture' ? (
           <ArchitecturePage
             onOpenAiChat={() => setIsAiChatOpen(true)}
             onOpenTerminal={() => setIsTerminalOpen(true)}
           />
+        ) : (
+          <ResumeTailorContainer />
         )}
       </main>
 
@@ -96,7 +133,7 @@ export default function App() {
         textAlign: 'center'
       }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
             <button onClick={() => setIsTerminalOpen(true)} className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.82rem' }}>
               <Terminal size={14} /> Open CLI
             </button>
@@ -105,6 +142,9 @@ export default function App() {
             </button>
             <button onClick={() => setIsContactOpen(true)} className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.82rem' }}>
               <Mail size={14} /> Contact
+            </button>
+            <button onClick={() => handleViewChange('resume-tailor')} className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.82rem', borderColor: 'var(--accent-cyan)' }}>
+              <Sparkles size={14} color="var(--accent-cyan)" /> ATS Resume Tailor
             </button>
           </div>
 
