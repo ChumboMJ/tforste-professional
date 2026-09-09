@@ -11,13 +11,13 @@
   --bg-card-border: rgba(255, 255, 255, 0.08);
 
   --accent-cyan: hsl(186, 100%, 50%);
-  --accent-indigo: hsl(250, 95%, 64%);
+  --accent-indigo: hsl(250, 95%, 72%);
   --accent-emerald: hsl(158, 85%, 44%);
   --accent-amber: hsl(40, 95%, 55%);
 
   --text-primary: hsl(210, 40%, 98%);
-  --text-secondary: hsl(215, 20%, 75%);
-  --text-muted: hsl(215, 16%, 50%);
+  --text-secondary: hsl(215, 25%, 82%);
+  --text-muted: hsl(215, 25%, 70%);
 
   --glow-cyan: 0 0 25px rgba(0, 242, 254, 0.3);
   --glow-indigo: 0 0 25px rgba(111, 76, 255, 0.3);
@@ -35,8 +35,8 @@
   --bg-card-border: rgba(0, 0, 0, 0.08);
 
   --text-primary: hsl(222, 47%, 11%);
-  --text-secondary: hsl(215, 25%, 32%);
-  --text-muted: hsl(215, 16%, 55%);
+  --text-secondary: hsl(215, 25%, 28%);
+  --text-muted: hsl(215, 25%, 40%);
 
   --glow-cyan: 0 0 15px rgba(0, 180, 200, 0.15);
   --glow-indigo: 0 0 15px rgba(90, 60, 220, 0.15);
